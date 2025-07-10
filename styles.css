@@ -25,7 +25,7 @@
 .welcome-content h1 {
     font-size: 50px;
     font-weight: bold;
-    color: #333333; /* Dark Gray */
+    color: #fff; /* Dark Gray */
     margin-bottom: 20px;
 }
 
@@ -67,7 +67,7 @@
 
 /* Header Styling */
 header {
-    background-color: #F0E0D6; /* Light Sandal background */
+    background-color: ##0d6efd; /* Light Sandal background */
     padding: 15px 0;
     text-align: center;
 }
@@ -99,7 +99,7 @@ nav .nav-links li {
 }
 
 nav .nav-links li a {
-    color: #7D7D7D; /* Medium Gray text for tabs */
+    color: #fff; /* Medium Gray text for tabs */
     text-decoration: none;
     font-size: 18px;
     font-weight: 500;
