@@ -1,0 +1,53 @@
+<html>
+
+<!-- Welcome Screen -->
+<div id="welcome-screen">
+    <div class="welcome-content">
+        <h1>Welcome to Ugeball</h1>
+        <p>Your journey to scalable, intelligent tech starts here.</p>
+    </div>
+</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ugeball</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#">Ugeball</a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about-us">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#partners">Partners</a></li>
+                <li><a href="#contact-us">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <script>
+        window.onload = function() {
+            // Wait for the welcome screen animation to finish (3 seconds)
+            setTimeout(function() {
+                // Hide the welcome screen
+                document.getElementById("welcome-screen").style.display = 'none';
+
+                // Show the main content by removing the hidden class
+                document.getElementById("main-content").classList.remove("hidden");
+            }, 3000); // 3000ms (3 seconds) delay before the main content appears
+        };
+    </script>
+
+
+
+
+</body>
+</html>
