@@ -1,68 +1,87 @@
 /* General Body Reset */
+body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e9e9ef;
+    color: #1f1f1f;
+}
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Welcome Screen Styles */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
+
+body {
+  font-family: 'Nunito', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Welcome Screen */
 #welcome-screen {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.8); /* Light white background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    opacity: 0;
-    animation: fadeIn 3s ease-in-out forwards;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #e9e9ef; /* Soft background */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: fadeOut 1s ease 3.5s forwards;
 }
 
-/* Welcome Text Styling */
-.welcome-content h1 {
-    font-size: 50px;
-    font-weight: bold;
-    color: #fff; /* Dark Gray */
-    margin-bottom: 20px;
+/* UGEball Brand Title */
+.ugeball-brand {
+  font-size: 74px;
+  font-weight: 900;
+  color: #F5DEB3; /* Light Sandal */
+  margin-bottom: 25px;
+  letter-spacing: -0.5px;
 }
 
+/* Tagline Text */
 .welcome-content p {
-    font-size: 22px;
-    color: #FFa500; /* Peach Color for Text */
+  font-size: 26px;
+  color: #0d6efd; /* Royal Blue */
+  margin-bottom: 35px;
+  font-weight: 600;
 }
 
-/* Fade-In Animation for Welcome Screen */
-@keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+/* Dots Loader */
+.dots-loader {
+  font-size: 54px;
+  color: #0d6efd;
 }
 
-/* Main Content Styling (Initially Hidden) */
-#main-content {
-    display: none;
+.dots-loader span {
+  animation: blink 1.2s infinite;
+}
+
+.dots-loader span:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.dots-loader span:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* Blink Animation */
+@keyframes blink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* Fade Out Welcome Screen */
+@keyframes fadeOut {
+  to {
     opacity: 0;
-    animation: fadeInContent 1s 3s forwards; /* Delay the main content */
-}
-
-/* Fade-In Animation for Main Content */
-@keyframes fadeInContent {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
-}
-
-/* Hidden class to hide main content initially */
-.hidden {
-    display: none;
-}
-
-/* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+    visibility: hidden;
+  }
 }
 
 /* Header Styling */
@@ -135,49 +154,51 @@ nav .nav-links li a.active {
         font-size: 20px;
     }
 }
-/* Home Section Styling */
-#home {
-    background-color: #e9e9ef; /* Soft Light Grayish Lavender */
-    padding: 100px 0;
-    text-align: center;
-    color: #333333; /* Dark Gray Text */
+
+
+#hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e9e9ef 100%, #ffffff 0%);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 0 20px;
 }
 
-/* Content Inside Home Section */
-.home-content {
-    max-width: 800px;
-    margin: 0 auto;
+.hero-content {
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
-/* Main Heading */
-.home-content h1 {
-    font-size: 50px;
-    font-weight: bold;
-    color: #2C2C2C; /* Deep Gray */
-    margin-bottom: 20px;
+.hero-content h1 {
+  font-size: 72px;
+  font-weight: 900;
+  color: #222;
+  margin-bottom: 30px;
 }
 
-/* Paragraph Text */
-.home-content p {
-    font-size: 22px;
-    color: #555555; /* Mid Gray */
-    margin-bottom: 30px;
-    line-height: 1.6;
+.hero-content p {
+  font-size: 24px;
+  color: #555;
+  margin-bottom: 50px;
 }
 
-/* Call To Action Button */
-.cta-button {
-    background-color: #FF7043; /* Peach Color */
-    color: white;
-    font-size: 18px;
-    padding: 15px 30px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
 }
 
-.cta-button:hover {
-    background-color: #FF5722; /* Slightly Darker Peach on Hover */
+.trusted {
+  margin-top: 30px;
+  font-size: 16px;
+  color: #777;
 }
 
+.trusted img {
+  height: 40px;
+  margin: 0 12px;
+  opacity: 0.8;
+}

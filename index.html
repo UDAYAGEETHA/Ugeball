@@ -1,20 +1,23 @@
 <html>
 
-<!-- Welcome Screen -->
 <div id="welcome-screen">
-    <div class="welcome-content">
-        <h1>Welcome to Ugeball</h1>
-        <p>Your journey to scalable, intelligent tech starts here.</p>
+  <div class="welcome-content">
+    <h1 class="ugeball-brand">UGE💎BALL</h1>
+    <p>Premium Digital Engineering Partner</p>
+    <div class="dots-loader">
+      <span>.</span><span>.</span><span>.</span>
     </div>
+  </div>
 </div>
 
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ugeball</title>
     <link rel="stylesheet" href="styles.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 </head>
 <body>
 
@@ -34,28 +37,31 @@
         </nav>
     </header>
 <!-- Home Section -->
-<section id="home">
-  <div class="home-content">
-    <h1>Welcome to Ugeball</h1>
-    <p>Your tech partner for scalable, intelligent, and tailor-made software solutions.</p>
-    <a href="#contact" class="cta-button">Get Started</a>
+<section id="hero">
+  <div class="hero-content">
+    <h1>Engineered for Visionaries. Powered by Ugeball.</h1>
+    <p>Scalable Web Development, AI-driven Data Analytics, and Cloud Systems — for businesses ready to lead their markets.</p>
+    <div class="actions">
+      <a href="#services" class="cta-button">Our Services</a>
+      <a href="#contact" class="secondary-button">Work with Us</a>
+    </div>
+    <div class="trusted">
+      <span>Trusted by:</span>
+      <img src="microsoft.png" alt="Microsoft">
+      <img src="google.png" alt="Google">
+      <img src="azure.png" alt="Azure">
+    </div>
   </div>
 </section>
 
-    <script>
-        window.onload = function() {
-            // Wait for the welcome screen animation to finish (3 seconds)
-            setTimeout(function() {
-                // Hide the welcome screen
-                document.getElementById("welcome-screen").style.display = 'none';
+<script>
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    document.getElementById('welcome-screen').style.display = 'none';
+  }, 3500);
+});
 
-                // Show the main content by removing the hidden class
-                document.getElementById("main-content").classList.remove("hidden");
-            }, 3000); // 3000ms (3 seconds) delay before the main content appears
-        };
-    </script>
-
-
+</script>
 
 
 </body>
