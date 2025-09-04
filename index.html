@@ -1,406 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ugeball</title>
-    <link rel="stylesheet" href="styles.css">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ugeball</title>
+  <!-- Base Nunito font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Extra bold Nunito for logo -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@900&display=swap" rel="stylesheet">
 
-</head>
-<body>
+  <style>
+    /* General Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #e9e9ef;
+      color: #1f1f1f;
+      line-height: 1.6;
+    }
 
-    <!-- Header Section -->
-    <header>
-        <nav>
-            <div class="logo">
-                <a href="#">Ugeball</a>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about-us">About Us</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#partners">Partners</a></li>
-                <li><a href="#contact-us">Contact Us</a></li>
-            </ul>
-        </nav>
-    </header>
-<style>
-/* General Body Reset */
-body {
-    font-family: 'Nunito', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #e9e9ef;
-    color: #1f1f1f;
-}
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap');
-
-body {
-  font-family: 'Nunito', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-/* Welcome Screen */
-#welcome-screen {
-  position: fixed;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: #e9e9ef; /* Soft background */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  animation: fadeOut 1s ease 3.5s forwards;
-}
-
-/* UGEball Brand Title */
-.ugeball-brand {
-  font-size: 74px;
-  font-weight: 900;
-  color: #F5DEB3; /* Light Sandal */
-  margin-bottom: 25px;
-  letter-spacing: -0.5px;
-}
-
-/* Tagline Text */
-.welcome-content p {
-  font-size: 26px;
-  color: #0d6efd; /* Royal Blue */
-  margin-bottom: 35px;
-  font-weight: 600;
-}
-
-/* Dots Loader */
-.dots-loader {
-  font-size: 54px;
-  color: #0d6efd;
-}
-
-.dots-loader span {
-  animation: blink 1.2s infinite;
-}
-
-.dots-loader span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.dots-loader span:nth-child(3) {
-  animation-delay: 0.4s;
-}
-
-/* Blink Animation */
-@keyframes blink {
-  0%, 100% { opacity: 0.2; }
-  50% { opacity: 1; }
-}
-
-/* Fade Out Welcome Screen */
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    visibility: hidden;
-  }
-}
-
-/* Header Styling */
-header {
-    background-color: #0d6efd; /* Light Sandal background */
-    padding: 15px 0;
-    text-align: center;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 40px;
-}
-
-nav .logo a {
-    color: #FFa500; /* Dark Gray text for the logo */
-    font-size: 28px;
-    text-decoration: none;
-    font-weight: bold;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-nav .nav-links {
-    list-style-type: none;
-    display: flex;
-    gap: 30px;
-}
-
-nav .nav-links li {
-    position: relative;
-}
-
-nav .nav-links li a {
-    color: #fff; /* Medium Gray text for tabs */
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-/* Hover Effect with Smooth Border */
-nav .nav-links li a:hover {
-    color: #FFa500; /* Highlight color on hover */
-    border-bottom: 2px solid #FFa500; /* Underline effect */
-    padding-bottom: 5px; /* Adds space below text for the underline effect */
-}
-
-/* Active Tab Indicator */
-nav .nav-links li a.active {
-    color: #FFa500;
-    border-bottom: 2px solid #FFa500; /* Keep active tab highlighted */
-}
-
-/* Mobile Navigation: Stack tabs vertically */
-@media (max-width: 768px) {
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #0D6EFD, #6EA8FE, #6F42C1, #0D6EFD);
+      padding: 8px 0;
+    }
     nav {
-        flex-direction: column;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 30px;
     }
-
-    nav .nav-links {
-        flex-direction: column;
-        gap: 20px;
-        margin-top: 20px;
-    }
-
+    .logo svg { height: 45px; display: block; }
+    nav .nav-links { list-style: none; display: flex; gap: 30px; }
     nav .nav-links li a {
-        font-size: 20px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 500;
+      transition: all 0.3s ease;
     }
-}
+    nav .nav-links li a:hover,
+    nav .nav-links li a.active {
+      color: #FFa500;
+      border-bottom: 2px solid #FFa500;
+      padding-bottom: 5px;
+    }
+    @media (max-width: 768px) {
+      nav { flex-direction: column; }
+      nav .nav-links { flex-direction: column; gap: 20px; margin-top: 20px; }
+      nav .nav-links li a { font-size: 20px; }
+    }
 
+    /* Hero */
+    .hero { padding: 70px 0 40px; text-align: center; }
+    .headline {
+      font-weight: 900;
+      font-size: clamp(2.2rem, 6vw, 4.4rem);
+      line-height: 1.1;
+    }
+    .grad-static {
+      background: linear-gradient(90deg,#0d6efd,#243b6b 55%,#0a1931 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      color:transparent;
+    }
+    .rot-word {
+      display:inline-block;
+      background:linear-gradient(90deg,#3aa1ff,#7aa6ff 50%,#b3c4ff 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      transition: opacity .25s ease;
+    }
+    .rot-underline { position:relative; display:inline-block; }
+    .rot-underline::after {
+      content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
+      background:linear-gradient(90deg,#7aa6ff,#3aa1ff);
+      animation:underlineSweep 2.4s ease-in-out infinite;
+    }
+    @keyframes underlineSweep {
+      0%{transform:scaleX(.2)} 50%{transform:scaleX(1)} 100%{transform:scaleX(.2)}
+    }
 
-</style>
+    .pitch { color:#50505c; max-width:64ch; margin:10px auto; }
 
-</body>
+    .brand-statement {
+      font-size:1.05rem;
+      font-style:italic;
+      font-weight:800;
+      margin:14px auto;
+      background:linear-gradient(90deg,#0D6EFD,#6EA8FE 40%,#6F42C1,#0D6EFD);
+      background-size:200% 100%;
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:shift 8s linear infinite;
+    }
+    @keyframes shift { to{background-position:200% 0} }
 
+    .trust { margin-top:16px; }
+    .trust .t { font-weight:500; font-size:.9rem; color:#6c6c75; }
+    .ms-logo { height:28px; margin-top:6px; }
 
+    .gov { margin-top:20px; font-size:.95rem; font-weight:600; color:#6c6c75; }
+    .gov strong {
+      background:linear-gradient(90deg,#0D6EFD,#6EA8FE 40%,#6F42C1,#0D6EFD);
+      background-size:200% 100%;
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      animation:shift 8s linear infinite;
+    }
 
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Ugeball — Home</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800;900&display=swap" rel="stylesheet">
-
-<style>
-  :root{
-    --bg:#e9e9ef;     /* background */
-    --ink:#0b0b10;
-    --muted:#50505c;
-    --brand:#0d6efd;  /* highlight blue */
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-    color:var(--ink);
-    background:var(--bg);
-    line-height:1.6;
-    overflow-x:hidden;
-  }
-  .container{width:min(1120px,92%); margin-inline:auto}
-
- 
-  /* Hero */
-  .hero{position:relative; isolation:isolate; padding:76px 0 34px}
-  .halo{
-    position:absolute; inset:-20vmax -20vmax auto auto; height:60vmax; aspect-ratio:1/1;
-    background:conic-gradient(from var(--angle),
-      color-mix(in oklab,var(--brand) 40%, white),
-      transparent 40% 60%,
-      color-mix(in oklab,#9aa7ff 40%, white));
-    filter:blur(60px) saturate(140%); opacity:.65; border-radius:50%; z-index:-1;
-    animation:spin 18s linear infinite
-  }
-  @keyframes spin{to{--angle:1turn}}
-  canvas.particles{position:absolute; inset:0; z-index:-1; opacity:.6; mix-blend-mode:multiply}
-
-  .hero-inner{
-    max-width:980px; margin:0 auto; text-align:center; position:relative;
-    min-height:68vh; display:flex; flex-direction:column; align-items:center;
-  }
-
-  /* Executive headline (blue → indigo → navy) */
-  .hero h1{
-    margin:0 0 8px;
-    font-size:clamp(2.2rem,6vw,4.4rem);
-    line-height:1.1; letter-spacing:.2px; font-weight:900;
-    background:linear-gradient(90deg,#0d6efd,#243b6b 55%,#0a1931 100%);
-    -webkit-background-clip:text; background-clip:text;
-    -webkit-text-fill-color:transparent; color:transparent;
-  }
-  .hero .line-break{display:block}
-
-  /* Dynamic word (brighter sapphire + underline) */
-  .gradient-text{
-    background:linear-gradient(90deg,#3aa1ff,#7aa6ff 50%,#b3c4ff 100%);
-    -webkit-background-clip:text; background-clip:text;
-    -webkit-text-fill-color:transparent; color:transparent;
-    position:relative; white-space:nowrap;
-  }
-  .gradient-text::after{
-    content:"";
-    position:absolute; left:0; right:0; bottom:-6px; height:2px;
-    background:linear-gradient(90deg,#7aa6ff,#3aa1ff);
-    opacity:.85; transform-origin:left;
-    animation:underlineSweep 2.4s ease-in-out infinite;
-  }
-  @keyframes underlineSweep{0%{transform:scaleX(.2)}50%{transform:scaleX(1)}100%{transform:scaleX(.2)}}
-
-  .pitch{color:var(--muted); max-width:64ch; margin:10px auto 10px}
-
-  /* Trusted block */
-  .trust-block{margin:16px auto 0; display:grid; place-items:center; gap:8px; text-align:center}
-  .trust-title{font-weight:500; letter-spacing:.3px; font-size:.85rem; text-transform:none; color:color-mix(in srgb,var(--muted) 80%, white)}
-  .ms-logo{height:28px; width:auto; display:block}
-
-  /* Government of India dynamic line */
-  .gov-line{margin-top:auto; padding-top:24px; font-size:.9rem; font-weight:500; color:color-mix(in srgb,var(--muted) 80%, white)}
-  .gov-highlight{
-    font-weight:900;
-    background:linear-gradient(90deg,var(--brand),#6ea8fe 40%,#6f42c1,var(--brand));
-    background-size:200% 100%;
-    -webkit-background-clip:text; background-clip:text;
-    -webkit-text-fill-color:transparent; color:transparent;
-    animation:shift 8s linear infinite;
-  }
-  @keyframes shift{to{background-position:200% 0}}
-
-  /* >>> Vibrant LIGHT SANDAL / PEACH moving gradient for brand statement <<< */
-  .brand-statement{
-    font-size:1.05rem;
-    font-style:italic;
-    font-weight:600;
-    background:linear-gradient(
-      90deg,
-      #ffe0b2,   /* light sandal / peach */
-      #ffc266,   /* vibrant warm sandal */
-      #ffe6cc,   /* soft creamy beige */
-      #ffd699    /* glowing peach sandal */
-    );
-    background-size:250% 100%;
-    -webkit-background-clip:text; background-clip:text;
-    -webkit-text-fill-color:transparent; color:transparent;
-    animation:sandalGlow 7s linear infinite, fadeIn 1.2s ease-in;
-    margin:14px auto 18px; max-width:60ch;
-  }
-  @keyframes sandalGlow{
-    0%{background-position:0% 0}
-    100%{background-position:200% 0}
-  }
-  @keyframes fadeIn{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)}}
-</style>
+    .fade-out{opacity:0;transition:opacity .18s ease}
+    .fade-in{opacity:1;transition:opacity .18s ease}
+  </style>
 </head>
 <body>
-  
 
+  <!-- Header -->
+  <header>
+    <nav>
+      <div class="logo">
+        <svg viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg" aria-label="UGEBALL">
+          <defs>
+            <linearGradient id="ugeball-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#3AA1FF"/>
+              <stop offset="100%" stop-color="#f7b67a"/>
+            </linearGradient>
+          </defs>
+          <text x="10" y="110"
+                font-family="'Nunito', sans-serif"
+                font-weight="900"
+                font-size="100"
+                fill="url(#ugeball-gradient)"
+                letter-spacing="2">
+            UGEBALL
+          </text>
+        </svg>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#alliances">Global Alliances</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
   <section class="hero">
-    <div class="halo" aria-hidden="true"></div>
-    <canvas class="particles" id="particles" aria-hidden="true"></canvas>
+    <h1 class="headline">
+      <span class="grad-static">Engineered for</span>
+      <span class="rot-underline"><span id="word1" class="rot-word">Visionaries</span></span>
+      <br>
+      <span class="grad-static">Built to</span>
+      <span class="rot-underline"><span id="word2" class="rot-word">Scale</span></span>
+      <span class="grad-static">Without Limits</span>
+    </h1>
 
-    <div class="hero-inner">
-      <h1>
-        <span>Engineered for Visionaries</span>
-        <span class="line-break">Powered by <span class="gradient-text" id="switcher">Ugeball</span></span>
-      </h1>
+    <p class="pitch">Enterprise software, cloud, and AI systems — built for reliability, security, and scale.</p>
+    <p class="brand-statement">Beyond solutions — we build legacies with you.</p>
 
-      <p class="pitch">
-        Scalable Web Development, AI-driven Data Analytics, and Cloud Systems — for businesses ready to lead their markets.
-      </p>
-
-      <!-- Brand statement with vibrant light sandal animation -->
-      <p class="brand-statement">Beyond solutions — we build legacies with you.</p>
-
-      <!-- Trusted by -->
-      <div class="trust-block">
-        <div class="trust-title">Trusted by</div>
-        <img src="https://uhf.microsoft.com/images/microsoft/RE1Mu3b.png" alt="Microsoft Logo" class="ms-logo">
-      </div>
-
-      <!-- Bottom recognition -->
-      <div class="gov-line">
-        Recognized by the <span class="gov-highlight">Government of India</span>
-      </div>
+    <div class="trust">
+      <div class="t">Trusted by</div>
+      <img src="https://uhf.microsoft.com/images/microsoft/RE1Mu3b.png" alt="Microsoft Logo" class="ms-logo">
     </div>
+
+    <div class="gov">Recognized by the <strong>Government of India</strong></div>
   </section>
 
 <script>
-/* Particles */
-const canvas=document.getElementById('particles');
-const ctx=canvas.getContext('2d',{alpha:true});
-let W,H,pts=[],mouse={x:0,y:0,a:0};
-function sizeCanvas(){
-  const r=canvas.parentElement.getBoundingClientRect();
-  W=canvas.width=r.width*devicePixelRatio;
-  H=canvas.height=r.height*devicePixelRatio;
-}
-addEventListener('resize',sizeCanvas,{passive:true}); sizeCanvas();
-function spawn(n=90){
-  pts=Array.from({length:n},()=>({
-    x:Math.random()*W, y:Math.random()*H,
-    vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4
-  }));
-}
-spawn();
-canvas.addEventListener('pointermove',e=>{
-  const r=canvas.getBoundingClientRect();
-  mouse.x=(e.clientX-r.left)*devicePixelRatio;
-  mouse.y=(e.clientY-r.top)*devicePixelRatio;
-  mouse.a=1; clearTimeout(mouse._t);
-  mouse._t=setTimeout(()=>mouse.a=0,800);
-},{passive:true});
-function step(){
-  ctx.clearRect(0,0,W,H);
-  for(const p of pts){
-    const dx=mouse.x-p.x, dy=mouse.y-p.y, d2=Math.max(60, dx*dx+dy*dy);
-    p.vx+=(dx/d2)*6*mouse.a; p.vy+=(dy/d2)*6*mouse.a;
-    p.x+=p.vx; p.y+=p.vy; p.vx*=.985; p.vy*=.985;
-    if(p.x<0)p.x+=W; if(p.x>W)p.x-=W; if(p.y<0)p.y+=H; if(p.y>H)p.y-=H;
-  }
-  ctx.globalAlpha=.9;
-  for(let i=0;i<pts.length;i++){
-    const p=pts[i];
-    ctx.fillStyle='rgba(13,110,253,.9)';
-    ctx.beginPath(); ctx.arc(p.x,p.y,1.2*devicePixelRatio,0,Math.PI*2); ctx.fill();
-    for(let j=i+1;j<pts.length;j++){
-      const q=pts[j]; const dx=q.x-p.x, dy=q.y-p.y, d=Math.hypot(dx,dy);
-      if(d<120*devicePixelRatio){
-        ctx.globalAlpha=1 - d/(120*devicePixelRatio);
-        ctx.strokeStyle='rgba(13,110,253,.35)';
-        ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
-      }
-    }
-  }
-  requestAnimationFrame(step);
-}
-step();
+  const MODE = 'paired'; // 'single' | 'paired'
+  const WORDS_LINE1 = ['Visionaries','Leaders','Pioneers','Innovators','Disruptors'];
+  const WORDS_LINE2 = ['Scale','Excel','Innovate','Transform','Endure'];
+  const PAIRED_COMBOS = [
+    ['Visionaries','Scale'],
+    ['Leaders','Transform'],
+    ['Innovators','Endure'],
+  ];
+  const MAX_ROTATIONS = 3;
+  const INTERVAL_MS = 1800;
+  const FADE_MS = 180;
 
-/* Word switcher */
-const switcher=document.getElementById('switcher');
-const words=["Ugeball","Ambition","Scale","Certainty","Leaders"];
-let wi=0;
-setInterval(()=>{
-  wi=(wi+1)%words.length;
-  switcher.style.opacity=0;
-  setTimeout(()=>{switcher.textContent=words[wi]; switcher.style.opacity=1;},140);
-},1800);
+  const el1 = document.getElementById('word1');
+  const el2 = document.getElementById('word2');
+  let index = 0, rotations = 0;
+
+  function fadeSwap(el, nextText){
+    el.classList.remove('fade-in');
+    el.classList.add('fade-out');
+    setTimeout(()=>{
+      el.textContent = nextText;
+      el.classList.remove('fade-out');
+      el.classList.add('fade-in');
+    }, FADE_MS);
+  }
+
+  function step(){
+    if(MODE === 'single'){
+      fadeSwap(el1, WORDS_LINE1[index % WORDS_LINE1.length]);
+    } else {
+      const pair = PAIRED_COMBOS[index % PAIRED_COMBOS.length];
+      fadeSwap(el1, pair[0]);
+      fadeSwap(el2, pair[1]);
+    }
+    index++; rotations++;
+    if(rotations >= MAX_ROTATIONS) clearInterval(timer);
+  }
+
+  el1.classList.add('fade-in'); el2.classList.add('fade-in');
+  const timer = setInterval(step, INTERVAL_MS);
 </script>
 </body>
-
-
-
 </html>
