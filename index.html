@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ugeball</title>
-  <!-- Nunito fonts -->
+  <!-- Nunito font -->
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -29,7 +29,7 @@
     /* HEADER */
     header {
       background: linear-gradient(90deg, #0D6EFD, #6EA8FE, #6F42C1, #0D6EFD);
-      padding: 8px 0;
+      padding: 12px 0; /* slightly taller for breathing */
     }
 
     nav {
@@ -76,11 +76,15 @@
     }
 
     /* HERO */
-    .hero { padding: 80px 0 60px; text-align: center; }
+    .hero { 
+      padding: 60px 0 40px; /* reduced gaps for balance */
+      text-align: center; 
+    }
+
     .hero h1 {
       font-size: clamp(2.2rem, 6vw, 4.4rem);
       font-weight: 900;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
       background: linear-gradient(90deg,#0d6efd,#243b6b 55%,#0a1931 100%);
       -webkit-background-clip: text;
       background-clip: text;
@@ -105,7 +109,11 @@
       0%{transform:scaleX(.2)} 50%{transform:scaleX(1)} 100%{transform:scaleX(.2)}
     }
 
-    .pitch { color: var(--muted); max-width: 64ch; margin: 12px auto 16px; }
+    .pitch { 
+      color: var(--muted); 
+      max-width: 64ch; 
+      margin: 0 auto 18px; 
+    }
 
     .brand-statement {
       font-size: 1.05rem;
@@ -117,14 +125,25 @@
       background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: shift 8s linear infinite, fadeIn 1.2s ease-in;
-      margin: 14px auto 24px; max-width: 60ch;
+      margin: 10px auto 28px; 
+      max-width: 60ch;
     }
 
-    .trust-block { margin: 12px auto 0; display: grid; place-items: center; gap: 6px; }
+    .trust-block { 
+      margin-top: 10px; 
+      display: grid; 
+      place-items: center; 
+      gap: 6px; 
+    }
     .trust-title { font-weight: 500; font-size: .85rem; color: color-mix(in srgb,var(--muted) 80%, white); }
     .ms-logo { height: 28px; }
 
-    .gov-line { margin-top: 28px; font-size: .9rem; font-weight: 600; color: color-mix(in srgb,var(--muted) 80%, white); }
+    .gov-line { 
+      margin-top: 20px; 
+      font-size: .9rem; 
+      font-weight: 600; 
+      color: color-mix(in srgb,var(--muted) 80%, white); 
+    }
     .gov-highlight {
       font-weight: 900;
       background: var(--gov-gradient);
