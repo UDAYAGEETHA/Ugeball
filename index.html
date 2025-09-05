@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ugeball</title>
-  <!-- Nunito font -->
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ugeball — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
   <style>
     :root{
       --bg:#e9e9ef;
@@ -15,147 +15,120 @@
       --gov-gradient: linear-gradient(90deg, var(--brand), #6ea8fe 40%, #6f42c1, var(--brand));
     }
 
-    body {
-      font-family: 'Nunito', sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg);
-      color: var(--ink);
-      line-height: 1.6;
+    *{box-sizing:border-box; margin:0; padding:0}
+    body{
+      font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      color:var(--ink); background:var(--bg); line-height:1.6;
+      overflow-x:hidden;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    /* HEADER */
+    /* ===== HEADER ===== */
     header {
       background: linear-gradient(90deg, #0D6EFD, #6EA8FE, #6F42C1, #0D6EFD);
-      padding: 12px 0; /* slightly taller for breathing */
+      padding: 10px 0;
     }
-
     nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display:flex; justify-content:space-between; align-items:center;
       padding: 0 30px;
     }
-
-    .logo svg {
-      display: block;
-      height: 45px;
+    .logo svg { height:45px; display:block; }
+    .nav-links { list-style:none; display:flex; gap:30px; margin:0; padding:0; }
+    .nav-links a {
+      color:#fff; text-decoration:none; font-size:18px; font-weight:500;
+      transition:all .3s ease; padding-bottom:2px;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color:#FFA500;
+      border-bottom:2px solid #FFA500;
+    }
+    @media(max-width:768px){
+      nav{flex-direction:column}
+      .nav-links{flex-direction:column; gap:20px; margin-top:20px}
+      .nav-links a{font-size:20px}
     }
 
-    nav .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 30px;
+    /* ===== HERO ===== */
+    .hero{
+      position:relative; isolation:isolate;
+      padding:76px 0 34px;
+      text-align:center; overflow:hidden;
+      min-height:68vh;
     }
 
-    nav .nav-links li a {
-      color: #fff;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: 500;
-      transition: all 0.3s ease;
+    /* === BACKGROUND ANIMATION (halo + particles) === */
+    .halo{
+      position:absolute; inset:-20vmax -20vmax auto auto; height:60vmax; aspect-ratio:1/1;
+      background:conic-gradient(from var(--angle),
+        color-mix(in oklab,var(--brand) 40%, white),
+        transparent 40% 60%,
+        color-mix(in oklab,#9aa7ff 40%, white));
+      filter:blur(60px) saturate(140%); opacity:.65; border-radius:50%; z-index:-1;
+      animation:spin 18s linear infinite;
+    }
+    @keyframes spin{to{--angle:1turn}}
+    canvas.particles{position:absolute; inset:0; z-index:-1; opacity:.6; mix-blend-mode:multiply}
+
+    .hero-inner{
+      max-width:980px; margin:0 auto; position:relative;
+      display:flex; flex-direction:column; align-items:center; min-height:52vh;
     }
 
-    nav .nav-links li a:hover {
-      color: #FFa500;
-      border-bottom: 2px solid #FFa500;
-      padding-bottom: 5px;
+    /* Headline */
+    .hero h1{
+      margin:0 0 8px;
+      font-size:clamp(2.2rem,6vw,4.4rem);
+      line-height:1.2;
+      letter-spacing:.2px; font-weight:900;
+      background:linear-gradient(90deg,#0d6efd,#243b6b 55%,#0a1931 100%);
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; color:transparent;
+    }
+    .line-break{
+      display:block;
+      margin-top:14px; /* <<< extra gap between first and second line */
     }
 
-    nav .nav-links li a.active {
-      color: #FFa500;
-      border-bottom: 2px solid #FFa500;
+    .gradient-text{
+      background:linear-gradient(90deg,#3aa1ff,#7aa6ff 50%,#b3c4ff 100%);
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; color:transparent;
+      position:relative; white-space:nowrap;
     }
-
-    @media (max-width: 768px) {
-      nav { flex-direction: column; }
-      nav .nav-links { flex-direction: column; gap: 20px; margin-top: 20px; }
-      nav .nav-links li a { font-size: 20px; }
-    }
-
-    /* HERO */
-    .hero { 
-      padding: 60px 0 40px; /* reduced gaps for balance */
-      text-align: center; 
-    }
-
-    .hero h1 {
-      font-size: clamp(2.2rem, 6vw, 4.4rem);
-      font-weight: 900;
-      margin-bottom: 16px;
-      background: linear-gradient(90deg,#0d6efd,#243b6b 55%,#0a1931 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .line-break { display: block; }
-
-    .gradient-text {
-      background: linear-gradient(90deg,#3aa1ff,#7aa6ff 50%,#b3c4ff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      position: relative;
-    }
-    .gradient-text::after {
-      content:"";
-      position:absolute; left:0; right:0; bottom:-6px; height:2px;
+    .gradient-text::after{
+      content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
       background:linear-gradient(90deg,#7aa6ff,#3aa1ff);
-      animation:underlineSweep 2.4s ease-in-out infinite;
+      opacity:.85; transform-origin:left; animation:underlineSweep 2.4s ease-in-out infinite;
     }
-    @keyframes underlineSweep {
-      0%{transform:scaleX(.2)} 50%{transform:scaleX(1)} 100%{transform:scaleX(.2)}
+    @keyframes underlineSweep{0%{transform:scaleX(.2)}50%{transform:scaleX(1)}100%{transform:scaleX(.2)}}
+
+    .pitch{color:var(--muted); max-width:64ch; margin:10px auto 10px}
+
+    /* Brand statement uses same gradient as Govt. of India */
+    .brand-statement{
+      font-size:1.05rem; font-style:italic; font-weight:800;
+      background:var(--gov-gradient); background-size:200% 100%;
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; color:transparent;
+      animation:shift 8s linear infinite, fadeIn 1.2s ease-in;
+      margin:14px auto 18px; max-width:60ch;
     }
 
-    .pitch { 
-      color: var(--muted); 
-      max-width: 64ch; 
-      margin: 0 auto 18px; 
-    }
+    .trust-block{margin:16px auto 0; display:grid; place-items:center; gap:8px; text-align:center}
+    .trust-title{font-weight:500; letter-spacing:.3px; font-size:.85rem; color:color-mix(in srgb,var(--muted) 80%, white)}
+    .ms-logo{height:28px; width:auto; display:block}
 
-    .brand-statement {
-      font-size: 1.05rem;
-      font-style: italic;
-      font-weight: 800;
-      background: var(--gov-gradient);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shift 8s linear infinite, fadeIn 1.2s ease-in;
-      margin: 10px auto 28px; 
-      max-width: 60ch;
+    .gov-line{margin-top:auto; padding-top:24px; font-size:.9rem; font-weight:500; color:color-mix(in srgb,var(--muted) 80%, white)}
+    .gov-highlight{
+      font-weight:900;
+      background:var(--gov-gradient);
+      background-size:200% 100%;
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; color:transparent;
+      animation:shift 8s linear infinite;
     }
-
-    .trust-block { 
-      margin-top: 10px; 
-      display: grid; 
-      place-items: center; 
-      gap: 6px; 
-    }
-    .trust-title { font-weight: 500; font-size: .85rem; color: color-mix(in srgb,var(--muted) 80%, white); }
-    .ms-logo { height: 28px; }
-
-    .gov-line { 
-      margin-top: 20px; 
-      font-size: .9rem; 
-      font-weight: 600; 
-      color: color-mix(in srgb,var(--muted) 80%, white); 
-    }
-    .gov-highlight {
-      font-weight: 900;
-      background: var(--gov-gradient);
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shift 8s linear infinite;
-    }
-
-    @keyframes shift { to { background-position:200% 0 } }
-    @keyframes fadeIn { from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)} }
+    @keyframes shift{to{background-position:200% 0}}
+    @keyframes fadeIn{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)}}
   </style>
 </head>
 <body>
@@ -164,7 +137,7 @@
   <header>
     <nav>
       <div class="logo">
-        <svg viewBox="0 0 900 150" height="45" xmlns="http://www.w3.org/2000/svg" aria-label="UGEBALL">
+        <svg viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg" aria-label="UGEBALL">
           <defs>
             <linearGradient id="ugeball-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stop-color="#3AA1FF"/>
@@ -173,13 +146,11 @@
           </defs>
           <text x="10" y="110" font-family="'Nunito', sans-serif"
                 font-weight="900" font-size="100"
-                fill="url(#ugeball-gradient)" letter-spacing="2">
-            UGEBALL
-          </text>
+                fill="url(#ugeball-gradient)" letter-spacing="2">UGEBALL</text>
         </svg>
       </div>
       <ul class="nav-links">
-        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#solutions">Solutions</a></li>
         <li><a href="#alliances">Global Alliances</a></li>
@@ -189,29 +160,89 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero">
-    <h1>
-      <span>Engineered for Visionaries</span>
-      <span class="line-break">Powered by <span class="gradient-text" id="switcher">Ugeball</span></span>
-    </h1>
+  <section class="hero" id="home">
+    <div class="halo" aria-hidden="true"></div>
+    <canvas class="particles" id="particles" aria-hidden="true"></canvas>
 
-    <p class="pitch">
-      Scalable Web Development, AI-driven Data Analytics, and Cloud Systems — for businesses ready to lead their markets.
-    </p>
+    <div class="hero-inner">
+      <h1>
+        <span>Engineered for Visionaries</span>
+        <span class="line-break">Powered by <span class="gradient-text" id="switcher">Ugeball</span></span>
+      </h1>
 
-    <p class="brand-statement">Beyond solutions — we build legacies with you.</p>
+      <p class="pitch">
+        Scalable Web Development, AI-driven Data Analytics, and Cloud Systems — for businesses ready to lead their markets.
+      </p>
 
-    <div class="trust-block">
-      <div class="trust-title">Trusted by</div>
-      <img src="https://uhf.microsoft.com/images/microsoft/RE1Mu3b.png" alt="Microsoft Logo" class="ms-logo">
-    </div>
+      <p class="brand-statement">Beyond solutions — we build legacies with you.</p>
 
-    <div class="gov-line">
-      Recognized by the <span class="gov-highlight">Government of India</span>
+      <div class="trust-block">
+        <div class="trust-title">Trusted by</div>
+        <img src="https://uhf.microsoft.com/images/microsoft/RE1Mu3b.png" alt="Microsoft Logo" class="ms-logo">
+      </div>
+
+      <div class="gov-line">
+        Recognized by the <span class="gov-highlight">Government of India</span>
+      </div>
     </div>
   </section>
 
   <script>
+    /* Particles (from your provided version) */
+    const canvas=document.getElementById('particles');
+    const ctx=canvas.getContext('2d',{alpha:true});
+    let W,H,pts=[],mouse={x:0,y:0,a:0};
+
+    function sizeCanvas(){
+      const r=canvas.parentElement.getBoundingClientRect();
+      W=canvas.width=r.width*devicePixelRatio;
+      H=canvas.height=r.height*devicePixelRatio;
+    }
+    addEventListener('resize',sizeCanvas,{passive:true}); sizeCanvas();
+
+    function spawn(n=90){
+      pts=Array.from({length:n},()=>({
+        x:Math.random()*W, y:Math.random()*H,
+        vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4
+      }));
+    }
+    spawn();
+
+    canvas.addEventListener('pointermove',e=>{
+      const r=canvas.getBoundingClientRect();
+      mouse.x=(e.clientX-r.left)*devicePixelRatio;
+      mouse.y=(e.clientY-r.top)*devicePixelRatio;
+      mouse.a=1; clearTimeout(mouse._t);
+      mouse._t=setTimeout(()=>mouse.a=0,800);
+    },{passive:true});
+
+    function step(){
+      ctx.clearRect(0,0,W,H);
+      for(const p of pts){
+        const dx=mouse.x-p.x, dy=mouse.y-p.y, d2=Math.max(60, dx*dx+dy*dy);
+        p.vx+=(dx/d2)*6*mouse.a; p.vy+=(dy/d2)*6*mouse.a;
+        p.x+=p.vx; p.y+=p.vy; p.vx*=.985; p.vy*=.985;
+        if(p.x<0)p.x+=W; if(p.x>W)p.x-=W; if(p.y<0)p.y+=H; if(p.y>H)p.y-=H;
+      }
+      ctx.globalAlpha=.9;
+      for(let i=0;i<pts.length;i++){
+        const p=pts[i];
+        ctx.fillStyle='rgba(13,110,253,.9)';
+        ctx.beginPath(); ctx.arc(p.x,p.y,1.2*devicePixelRatio,0,Math.PI*2); ctx.fill();
+        for(let j=i+1;j<pts.length;j++){
+          const q=pts[j]; const dx=q.x-p.x, dy=q.y-p.y, d=Math.hypot(dx,dy);
+          if(d<120*devicePixelRatio){
+            ctx.globalAlpha=1 - d/(120*devicePixelRatio);
+            ctx.strokeStyle='rgba(13,110,253,.35)';
+            ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    step();
+
+    /* Word switcher */
     const switcher=document.getElementById('switcher');
     const words=["Ugeball","Ambition","Scale","Certainty","Leaders"];
     let wi=0;
@@ -221,6 +252,5 @@
       setTimeout(()=>{switcher.textContent=words[wi]; switcher.style.opacity=1;},140);
     },1800);
   </script>
-
 </body>
 </html>
