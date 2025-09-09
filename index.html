@@ -1,1 +1,1360 @@
-h
+<!DOCTYPE html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ugeball — Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#e9e9ef;
+      --ink:#0b0b10;
+      --muted:#50505c;
+      --brand:#0d6efd;
+      --gov-gradient: linear-gradient(90deg, var(--brand), #6ea8fe 40%, #6f42c1, var(--brand));
+    }
+
+    *{box-sizing:border-box; margin:0; padding:0}
+    body{
+      font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+      color:var(--ink); background:var(--bg); line-height:1.6;
+      overflow-x:hidden;
+    }
+
+    /* ===== HEADER ===== */
+    header {
+      background: linear-gradient(90deg, #0D6EFD, #6EA8FE, #6F42C1, #0D6EFD);
+      padding: 10px 0;
+    }
+    nav {
+      display:flex; justify-content:space-between; align-items:center;
+      padding: 0 30px;
+    }
+    .logo svg { height:45px; display:block; }
+    .nav-links { list-style:none; display:flex; gap:30px; margin:0; padding:0; }
+    .nav-links a {
+      color:#fff; text-decoration:none; font-size:18px; font-weight:500;
+      transition:all .3s ease; padding-bottom:2px;
+    }
+    .nav-links a:hover,
+    .nav-links a.active {
+      color:#FFA500;
+      border-bottom:2px solid #FFA500;
+    }
+    @media(max-width:768px){
+      nav{flex-direction:column}
+      .nav-links{flex-direction:column; gap:20px; margin-top:20px}
+      .nav-links a{font-size:20px}
+    }
+
+    /* ===== HERO ===== */
+    .hero{
+      position:relative; isolation:isolate;
+      padding:76px 0 34px;
+      text-align:center; overflow:hidden;
+      min-height:68vh;
+    }
+
+    /* === BACKGROUND ANIMATION (halo + particles) === */
+    .halo{
+      position:absolute; inset:-20vmax -20vmax auto auto; height:60vmax; aspect-ratio:1/1;
+      background:conic-gradient(from var(--angle),
+        color-mix(in oklab,var(--brand) 40%, white),
+        transparent 40% 60%,
+        color-mix(in oklab,#9aa7ff 40%, white));
+      filter:blur(60px) saturate(140%); opacity:.65; border-radius:50%; z-index:-1;
+      animation:spin 18s linear infinite;
+    }
+    @keyframes spin{to{--angle:1turn}}
+    canvas.particles{position:absolute; inset:0; z-index:-1; opacity:.6; mix-blend-mode:multiply}
+
+    .hero-inner{
+      max-width:980px; margin:0 auto; position:relative;
+      display:flex; flex-direction:column; align-items:center; min-height:52vh;
+    }
+
+    /* Headline */
+    .hero h1{
+      margin:0 0 8px;
+      font-size:clamp(2.2rem,6vw,4.4rem);
+      line-height:1.2;
+      letter-spacing:.2px; font-weight:900;
+      background:linear-gradient(90deg,#0d6efd,#243b6b 55%,#0a1931 100%);
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; color:transparent;
+    }
+    .line-break{
+      display:block;
+      margin-top:14px; /* <<< extra gap between first and second line */
+    }
+
+    .gradient-text{
+      background:linear-gradient(90deg,#3aa1ff,#7aa6ff 50%,#b3c4ff 100%);
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; color:transparent;
+      position:relative; white-space:nowrap;
+    }
+    .gradient-text::after{
+      content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
+      background:linear-gradient(90deg,#7aa6ff,#3aa1ff);
+      opacity:.85; transform-origin:left; animation:underlineSweep 2.4s ease-in-out infinite;
+    }
+    @keyframes underlineSweep{0%{transform:scaleX(.2)}50%{transform:scaleX(1)}100%{transform:scaleX(.2)}}
+
+    .pitch{color:var(--muted); max-width:64ch; margin:10px auto 10px}
+
+    /* Brand statement uses same gradient as Govt. of India */
+    .brand-statement{
+      font-size:1.05rem; font-style:italic; font-weight:800;
+      background:var(--gov-gradient); background-size:200% 100%;
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; color:transparent;
+      animation:shift 8s linear infinite, fadeIn 1.2s ease-in;
+      margin:14px auto 18px; max-width:60ch;
+    }
+
+    .trust-block{margin:16px auto 0; display:grid; place-items:center; gap:8px; text-align:center}
+    .trust-title{font-weight:500; letter-spacing:.3px; font-size:.85rem; color:color-mix(in srgb,var(--muted) 80%, white)}
+    .ms-logo{height:28px; width:auto; display:block}
+
+    .gov-line{margin-top:auto; padding-top:24px; font-size:.9rem; font-weight:500; color:color-mix(in srgb,var(--muted) 80%, white)}
+    .gov-highlight{
+      font-weight:900;
+      background:var(--gov-gradient);
+      background-size:200% 100%;
+      -webkit-background-clip:text; background-clip:text;
+      -webkit-text-fill-color:transparent; color:transparent;
+      animation:shift 8s linear infinite;
+    }
+    @keyframes shift{to{background-position:200% 0}}
+    @keyframes fadeIn{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:translateY(0)}}
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <nav>
+      <div class="logo">
+        <svg viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg" aria-label="UGEBALL">
+          <defs>
+            <linearGradient id="ugeball-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#3AA1FF"/>
+              <stop offset="100%" stop-color="#f7b67a"/>
+            </linearGradient>
+          </defs>
+          <text x="10" y="110" font-family="'Nunito', sans-serif"
+                font-weight="900" font-size="100"
+                fill="url(#ugeball-gradient)" letter-spacing="2">UGEBALL</text>
+        </svg>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#alliances">Global Alliances</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="halo" aria-hidden="true"></div>
+    <canvas class="particles" id="particles" aria-hidden="true"></canvas>
+
+    <div class="hero-inner">
+      <h1>
+        <span>Engineered for Visionaries</span>
+        <span class="line-break">Powered by <span class="gradient-text" id="switcher">Ugeball</span></span>
+      </h1>
+
+      <p class="pitch">
+        Scalable Web Development, AI-driven Data Analytics, and Cloud Systems — for businesses ready to lead their markets.
+      </p>
+
+      <p class="brand-statement">Beyond solutions — we build legacies with you.</p>
+
+      <div class="trust-block">
+        <div class="trust-title">Trusted by</div>
+        <img src="https://uhf.microsoft.com/images/microsoft/RE1Mu3b.png" alt="Microsoft Logo" class="ms-logo">
+      </div>
+
+      <div class="gov-line">
+        Recognized by the <span class="gov-highlight">Government of India</span>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    /* Particles (from your provided version) */
+    const canvas=document.getElementById('particles');
+    const ctx=canvas.getContext('2d',{alpha:true});
+    let W,H,pts=[],mouse={x:0,y:0,a:0};
+
+    function sizeCanvas(){
+      const r=canvas.parentElement.getBoundingClientRect();
+      W=canvas.width=r.width*devicePixelRatio;
+      H=canvas.height=r.height*devicePixelRatio;
+    }
+    addEventListener('resize',sizeCanvas,{passive:true}); sizeCanvas();
+
+    function spawn(n=90){
+      pts=Array.from({length:n},()=>({
+        x:Math.random()*W, y:Math.random()*H,
+        vx:(Math.random()-.5)*.4, vy:(Math.random()-.5)*.4
+      }));
+    }
+    spawn();
+
+    canvas.addEventListener('pointermove',e=>{
+      const r=canvas.getBoundingClientRect();
+      mouse.x=(e.clientX-r.left)*devicePixelRatio;
+      mouse.y=(e.clientY-r.top)*devicePixelRatio;
+      mouse.a=1; clearTimeout(mouse._t);
+      mouse._t=setTimeout(()=>mouse.a=0,800);
+    },{passive:true});
+
+    function step(){
+      ctx.clearRect(0,0,W,H);
+      for(const p of pts){
+        const dx=mouse.x-p.x, dy=mouse.y-p.y, d2=Math.max(60, dx*dx+dy*dy);
+        p.vx+=(dx/d2)*6*mouse.a; p.vy+=(dy/d2)*6*mouse.a;
+        p.x+=p.vx; p.y+=p.vy; p.vx*=.985; p.vy*=.985;
+        if(p.x<0)p.x+=W; if(p.x>W)p.x-=W; if(p.y<0)p.y+=H; if(p.y>H)p.y-=H;
+      }
+      ctx.globalAlpha=.9;
+      for(let i=0;i<pts.length;i++){
+        const p=pts[i];
+        ctx.fillStyle='rgba(13,110,253,.9)';
+        ctx.beginPath(); ctx.arc(p.x,p.y,1.2*devicePixelRatio,0,Math.PI*2); ctx.fill();
+        for(let j=i+1;j<pts.length;j++){
+          const q=pts[j]; const dx=q.x-p.x, dy=q.y-p.y, d=Math.hypot(dx,dy);
+          if(d<120*devicePixelRatio){
+            ctx.globalAlpha=1 - d/(120*devicePixelRatio);
+            ctx.strokeStyle='rgba(13,110,253,.35)';
+            ctx.beginPath(); ctx.moveTo(p.x,p.y); ctx.lineTo(q.x,q.y); ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(step);
+    }
+    step();
+
+    /* Word switcher */
+    const switcher=document.getElementById('switcher');
+    const words=["Ugeball","Ambition","Scale","Certainty","Leaders"];
+    let wi=0;
+    setInterval(()=>{
+      wi=(wi+1)%words.length;
+      switcher.style.opacity=0;
+      setTimeout(()=>{switcher.textContent=words[wi]; switcher.style.opacity=1;},140);
+    },1800);
+  </script>
+</body>
+</html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UGEBALL — Who We Are</title>
+
+  <!-- ✅ Load Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Nunito', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #e9e9ef;
+      color: #0b0b10;
+      line-height: 1.6;
+    }
+
+    /* ===== Who We Are Section ===== */
+    .who-dynamic {
+      padding: 72px 20px;
+      font-family: 'Nunito', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      position: relative;
+      overflow: hidden;
+    }
+    .who__wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .who__eyebrow {
+      margin: 0 0 6px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-weight: 800;
+      font-size: .82rem;
+      color: #6c757d;
+      text-align: center;
+    }
+
+    .who__title {
+      margin: 0 auto 14px;
+      text-align: center;
+      line-height: 1.12;
+      font-weight: 900;
+      font-size: clamp(1.9rem, 4.8vw, 2.8rem);
+      letter-spacing: .2px;
+    }
+    .ink-gradient {
+      background: linear-gradient(90deg, #0D6EFD, #243B6B 55%, #0A1931 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+      position: relative;
+      white-space: nowrap;
+    }
+    .ink-gradient::after {
+      content: "";
+      position: absolute;
+      left: 0; right: 0; bottom: -8px;
+      height: 3px; border-radius: 2px;
+      background: linear-gradient(90deg, #7AA6FF, #3AA1FF);
+      opacity: .95;
+      transform-origin: left;
+      animation: barSweep 2.6s ease-in-out infinite;
+    }
+    @keyframes barSweep {
+      0% { transform: scaleX(.2); }
+      50% { transform: scaleX(1); }
+      100% { transform: scaleX(.2); }
+    }
+
+    .who__lede {
+      max-width: 78ch;
+      margin: 14px auto 22px;
+      text-align: center;
+      font-size: 1.08rem;
+      color: #202127;
+    }
+    .who__lede .hi {
+      background: linear-gradient(90deg, #3AA1FF, #7AA6FF 55%, #B3C4FF 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .who__points {
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      max-width: 1000px;
+      margin: 6px auto 10px;
+    }
+    .point {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: flex-start;
+      background: #fff;
+      border: 1px solid rgba(13, 110, 253, .12);
+      border-radius: 12px;
+      padding: 16px 18px;
+      box-shadow: 0 6px 18px rgba(13, 110, 253, .06);
+      transform: translateY(8px);
+      opacity: 0;
+    }
+    .point.reveal {
+      transform: translateY(0);
+      opacity: 1;
+      transition: .5s ease;
+    }
+    .point:nth-child(2).reveal { transition-delay: .07s; }
+    .point:nth-child(3).reveal { transition-delay: .12s; }
+
+    .point h4 {
+      margin: 0 0 6px;
+      font-weight: 900;
+      font-size: 1.02rem;
+      background: linear-gradient(90deg, #0D6EFD, #243B6B 60%, #0A1931);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .point p {
+      margin: 0;
+      color: #50505c;
+      font-size: .98rem;
+    }
+    .dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: conic-gradient(from .25turn, #3AA1FF, #0D6EFD 70%, #6F42C1);
+      box-shadow: 0 0 0 3px rgba(13, 110, 253, .08) inset;
+    }
+
+    /* Closing tagline with hero-style gradient + background animation */
+    .who__tag {
+      position: relative;
+      text-align: center;
+      margin: 40px auto 0;
+      max-width: 64ch;
+      font-weight: 900;
+      font-size: 1.3rem;
+      z-index: 1;
+    }
+    .who__tag .ink-gradient {
+      background: linear-gradient(90deg, #0D6EFD, #243B6B 55%, #0A1931 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .who__tag.hero-bg::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: conic-gradient(from 0turn, #3AA1FF, #7AA6FF, #6F42C1, #3AA1FF);
+      background-size: 200% 200%;
+      filter: blur(80px) saturate(160%);
+      opacity: 0.18;
+      animation: spinbg 18s linear infinite;
+      z-index: -1;
+    }
+    @keyframes spinbg {
+      to { transform: rotate(1turn); }
+    }
+
+    .who__stats {
+      margin: 28px auto 0;
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .stat {
+      background: #F8FAFF;
+      border: 1px solid rgba(13, 110, 253, .12);
+      border-radius: 12px;
+      padding: 14px 16px;
+      min-width: 180px;
+      text-align: center;
+    }
+    .num {
+      font-weight: 900;
+      font-size: 1.8rem;
+      background: linear-gradient(90deg, #0D6EFD, #243B6B 55%, #0A1931);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .unit {
+      margin-left: 4px;
+      font-weight: 800;
+      color: #243B6B;
+    }
+    .label {
+      margin-top: 4px;
+      color: #50505c;
+      font-weight: 600;
+      font-size: .92rem;
+    }
+
+    /* Responsive */
+    @media (max-width:980px){.who__points{grid-template-columns:repeat(2,minmax(220px,1fr))}}
+    @media (max-width:600px){.who__points{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+
+  <!-- WHO WE ARE -->
+  <section class="who-dynamic" id="about">
+    <div class="who__wrap">
+      <h2 class="who__eyebrow">Who We Are</h2>
+
+      <h3 class="who__title">
+        We turn bold ideas into <span class="ink-gradient">systems that scale</span>.
+      </h3>
+
+      <p class="who__lede">
+        <strong>UGEBALL</strong> builds <span class="hi">high-impact digital ecosystems</span> — the kind that
+        don’t blink at growth. We blend <b>engineering muscle</b>, <b>AI foresight</b>, and
+        <b>cloud resilience</b> to give leaders a platform they can push, confidently.
+      </p>
+
+      <div class="who__points">
+        <div class="point">
+          <span class="dot"></span>
+          <div>
+            <h4>Momentum over maintenance</h4>
+            <p>Ship fast, harden faster. Architectures that get stronger with use.</p>
+          </div>
+        </div>
+        <div class="point">
+          <span class="dot"></span>
+          <div>
+            <h4>Signals, not noise</h4>
+            <p>Data and AI stitched into the product — decisions where they matter.</p>
+          </div>
+        </div>
+        <div class="point">
+          <span class="dot"></span>
+          <div>
+            <h4>Scale without drama</h4>
+            <p>Global-ready, secure-by-default, cost-aware by design.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Closing line updated -->
+      <p class="who__tag hero-bg">
+        Not just software — <span class="ink-gradient">a platform for certainty</span>.
+      </p>
+
+      <div class="who__stats">
+        <div class="stat"><span class="num" data-to="99.95">0</span><span class="unit">%</span><div class="label">Uptime targets</div></div>
+        <div class="stat"><span class="num" data-to="10">0</span><span class="unit">x</span><div class="label">Traffic ready</div></div>
+        <div class="stat"><span class="num" data-to="30">0</span><span class="unit">d</span><div class="label">to first impact</div></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    /* Reveal + count up */
+    (function(){
+      const points = document.querySelectorAll('.point');
+      const io = new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){ e.target.classList.add('reveal'); io.unobserve(e.target); }
+        });
+      },{threshold:0.18});
+      points.forEach(p=>io.observe(p));
+
+      const nums = document.querySelectorAll('.who__stats .num');
+      const io2 = new IntersectionObserver(entries=>{
+        entries.forEach(e=>{
+          if(!e.isIntersecting) return;
+          const el=e.target, to=+el.getAttribute('data-to')||0;
+          let t=0, cur=0, dur=900;
+          const step=ts=>{
+            if(!t) t=ts;
+            const p=Math.min(1,(ts-t)/dur);
+            cur = to * p;
+            el.textContent = (to>=100 ? cur.toFixed(2) : Math.round(cur));
+            if(p<1) requestAnimationFrame(step);
+            else el.textContent = (to>=100 ? to.toFixed(2) : to);
+          };
+          requestAnimationFrame(step);
+          io2.unobserve(el);
+        });
+      },{threshold:0.4});
+      nums.forEach(n=>io2.observe(n));
+    })();
+  </script>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UGEBALL — Our Values</title>
+
+  <!-- ✅ Load Nunito -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* Use Nunito globally */
+    body {
+      margin: 0;
+      background: #e9e9ef;
+      color: #0b0b10;
+      line-height: 1.6;
+      font-family:'Nunito', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    }
+
+    /* Force Nunito inside section */
+    .values, .values * {
+      font-family:'Nunito', system-ui, -apple-system, Segoe UI, Roboto, sans-serif !important;
+    }
+
+    /* ===== Values Section ===== */
+    .values{
+      padding:72px 20px;
+    }
+    .values__wrap{max-width:1100px;margin:0 auto;color:#0b0b10}
+
+    .values__eyebrow{
+      margin:0;text-transform:uppercase;letter-spacing:.14em;
+      font-weight:800;font-size:.82rem;color:#6c757d;text-align:center
+    }
+    .values__title{
+      margin:6px 0 10px;text-align:center;font-weight:900;
+      font-size:clamp(1.8rem,4vw,2.6rem);line-height:1.15
+    }
+    .values .ink-gradient{
+      background:linear-gradient(90deg,#0D6EFD,#243B6B 55%,#0A1931 100%);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+      position:relative;white-space:nowrap
+    }
+    .values .ink-gradient::after{
+      content:"";position:absolute;left:50%;transform:translateX(-50%);
+      bottom:-8px;width:120px;height:3px;border-radius:2px;
+      background:linear-gradient(90deg,#7AA6FF,#3AA1FF);opacity:.95
+    }
+
+    .values__lede{
+      max-width:76ch;margin:18px auto 24px;text-align:center;font-size:1.06rem;color:#50505c
+    }
+
+    /* Grid */
+    .values__grid{
+      display:grid;gap:18px;grid-template-columns:repeat(4,minmax(220px,1fr));
+      max-width:1100px;margin:0 auto 14px
+    }
+    @media (max-width:1024px){.values__grid{grid-template-columns:repeat(2,minmax(240px,1fr))}}
+    @media (max-width:600px){.values__grid{grid-template-columns:1fr}}
+
+    .value{
+      background:#fff;border:1px solid rgba(13,110,253,.12);border-radius:14px;
+      padding:18px;box-shadow:0 8px 20px rgba(13,110,253,.06);
+      transform:translateY(10px);opacity:0;
+    }
+    .value.reveal{transform:translateY(0);opacity:1;transition:.5s ease}
+    .value:nth-child(2).reveal{transition-delay:.07s}
+    .value:nth-child(3).reveal{transition-delay:.12s}
+    .value:nth-child(4).reveal{transition-delay:.17s}
+
+    .value__icon{width:48px;height:48px;margin-bottom:8px;display:grid;place-items:center}
+    .value__icon svg{width:100%;height:100%}
+
+    .value__title{
+      margin:0 0 8px;font-size:1.06rem;font-weight:900;
+      background:linear-gradient(90deg,#0D6EFD,#243B6B 60%,#0A1931);
+      -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent
+    }
+    .value__text{margin:0;color:#50505c;font-size:.98rem}
+
+    /* Closing line using Global Perspective gradient */
+    .values__closing.gp-gradient{
+      margin:20px auto 0;
+      text-align:center;
+      max-width:70ch;
+      font-weight:700;
+      font-size:1.02rem;
+      background:linear-gradient(90deg,#0D6EFD,#6EA8FE 40%,#6F42C1);
+      background-size:200% 100%;
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
+      color:transparent;
+      animation:gpShift 8s linear infinite;
+    }
+    @keyframes gpShift{to{background-position:200% 0}}
+  </style>
+</head>
+<body>
+
+<!-- OUR VALUES (What Defines UGEBALL) -->
+<section class="values" id="values">
+  <div class="values__wrap">
+    <h2 class="values__eyebrow">Our Values</h2>
+    <h3 class="values__title">
+      What Defines <span class="ink-gradient">UGEBALL</span>
+    </h3>
+
+    <p class="values__lede">
+      We are guided by four principles that influence everything we build:
+    </p>
+
+    <div class="values__grid">
+      <!-- Reliability at Scale -->
+      <article class="value reveal">
+        <div class="value__icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M32 6l20 8v14c0 13-8.8 24.9-20 28-11.2-3.1-20-15-20-28V14l20-8z"
+                  fill="url(#g1)"/>
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#0D6EFD"/>
+                <stop offset=".6" stop-color="#243B6B"/>
+                <stop offset="1" stop-color="#0A1931"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h4 class="value__title">Reliability at Scale</h4>
+        <p class="value__text">
+          Technology that performs flawlessly whether serving 100 users or 10 million.
+        </p>
+      </article>
+
+      <!-- Innovation First -->
+      <article class="value reveal">
+        <div class="value__icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="12" fill="url(#g2)"/>
+            <g stroke="url(#g2)" stroke-width="3" stroke-linecap="round">
+              <line x1="32" y1="6" x2="32" y2="16"/>
+              <line x1="32" y1="48" x2="32" y2="58"/>
+              <line x1="6" y1="32" x2="16" y2="32"/>
+              <line x1="48" y1="32" x2="58" y2="32"/>
+              <line x1="12" y1="12" x2="20" y2="20"/>
+              <line x1="52" y1="52" x2="44" y2="44"/>
+              <line x1="12" y1="52" x2="20" y2="44"/>
+              <line x1="52" y1="12" x2="44" y2="20"/>
+            </g>
+            <defs>
+              <linearGradient id="g2" x1="0" x2="1">
+                <stop offset="0" stop-color="#3AA1FF"/>
+                <stop offset="1" stop-color="#7AA6FF"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h4 class="value__title">Innovation First</h4>
+        <p class="value__text">
+          We prioritize AI, automation, and data-driven systems to keep our clients future-ready.
+        </p>
+      </article>
+
+      <!-- Global Perspective -->
+      <article class="value reveal">
+        <div class="value__icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <circle cx="32" cy="32" r="18" fill="none" stroke="url(#g3)" stroke-width="3"/>
+            <ellipse cx="32" cy="32" rx="22" ry="10" fill="none" stroke="url(#g3)" stroke-width="3"/>
+            <ellipse cx="32" cy="32" rx="10" ry="22" fill="none" stroke="url(#g3)" stroke-width="3"/>
+            <defs>
+              <linearGradient id="g3" x1="0" x2="1">
+                <stop offset="0" stop-color="#0D6EFD"/>
+                <stop offset=".5" stop-color="#6EA8FE"/>
+                <stop offset="1" stop-color="#6F42C1"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h4 class="value__title">Global Perspective</h4>
+        <p class="value__text">
+          Born in India’s innovation hubs, designed for global impact.
+        </p>
+      </article>
+
+      <!-- Partnership DNA -->
+      <article class="value reveal">
+        <div class="value__icon">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M22 30l10 10c3 3 7 3 10 0l4-4c3-3 3-7 0-10l-2-2" fill="none" stroke="url(#g4)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M42 34l-10-10c-3-3-7-3-10 0l-4 4c-3 3-3 7 0 10l2 2" fill="none" stroke="url(#g4)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="g4" x1="0" x2="1">
+                <stop offset="0" stop-color="#3AA1FF"/>
+                <stop offset="1" stop-color="#0D6EFD"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h4 class="value__title">Partnership DNA</h4>
+        <p class="value__text">
+          We measure success by how well our clients grow — not just by project delivery.
+        </p>
+      </article>
+    </div>
+
+    <!-- Closing line with Global Perspective gradient -->
+    <p class="values__closing gp-gradient">
+      These values are not slogans; they are the engine behind every solution we deliver.
+    </p>
+  </div>
+</section>
+
+<script>
+/* Reveal effect */
+(function(){
+  const els=document.querySelectorAll('.value');
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('reveal'); io.unobserve(e.target); }
+    });
+  },{threshold:.15});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+</body>
+</html>
+
+<!-- =========================
+     INDUSTRIES — Line Icons like your Values section
+     ========================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+<section id="industries" class="inds linicons">
+  <div class="inds__wrap">
+    <h2 class="inds__eyebrow">Industries We Serve</h2>
+    <h3 class="inds__title">
+      <span class="ink-gradient">Tailored Solutions</span> for Leaders Across <span class="ink-gradient">Key Sectors</span>
+    </h3>
+
+    <p class="inds__lede">
+      UGEBALL focuses on sectors where technology doesn’t just enable business — it
+      <span class="hi">defines leadership</span>. We deliver platforms that help organizations
+      <span class="hi">govern nations</span>, <span class="hi">transform healthcare</span>,
+      <span class="hi">secure finance</span>, <span class="hi">scale industries</span>, and
+      <span class="hi">build the digital economy of tomorrow</span>.
+    </p>
+
+    <div class="inds__grid">
+
+      <!-- Financial Services (Shield) -->
+      <article class="ind reveal">
+        <div class="ind__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <defs>
+              <linearGradient id="gA" x1="0" x2="1">
+                <stop offset="0" stop-color="#3AA1FF"/><stop offset="1" stop-color="#0D6EFD"/>
+              </linearGradient>
+            </defs>
+            <path d="M12 3l7 3.8V11c0 4.9-3.6 9.6-7 10-3.4-.4-7-5.1-7-10V6.8L12 3z"
+                  fill="none" stroke="url(#gA)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="ind__body">
+          <h4 class="ind__title">Financial Services</h4>
+          <p class="ind__text">
+            AI-powered intelligence for <span class="hi">fraud detection</span>, <span class="hi">compliance</span>, and <span class="hi">investment insights</span>.<br>
+            We help banks, insurers, and financial institutions strengthen trust, reduce risk, and unlock sustainable growth in an era of digital-first finance.
+            <span class="proof">➡ Trusted to safeguard millions of secure transactions every month.</span>
+          </p>
+        </div>
+      </article>
+
+      <!-- Healthcare & Life Sciences (Spark / medical star) -->
+      <article class="ind reveal">
+        <div class="ind__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <g fill="none" stroke="#0D6EFD" stroke-width="2" stroke-linecap="round">
+              <path d="M12 3v6M12 15v6M3 12h6M15 12h6"/>
+              <path d="M6 6l4 4M18 6l-4 4M6 18l4-4M18 18l-4-4" stroke="#3AA1FF"/>
+            </g>
+          </svg>
+        </div>
+        <div class="ind__body">
+          <h4 class="ind__title">Healthcare &amp; Life Sciences</h4>
+          <p class="ind__text">
+            Secure digital ecosystems for <span class="hi">telehealth</span>, <span class="hi">diagnostics</span>, and <span class="hi">patient-first engagement</span>.<br>
+            Our solutions ensure healthcare organizations deliver better outcomes, improve efficiency, and build resilient digital ecosystems that put patients at the center.
+            <span class="proof">➡ Improving patient engagement and operational efficiency for next-generation care.</span>
+          </p>
+        </div>
+      </article>
+
+      <!-- Public Sector & Smart Cities (Government / Pillars) -->
+      <article class="ind reveal">
+        <div class="ind__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 3l9 5H3l9-5zM3 10h18M5 10v7m4-7v7m4-7v7m4-7v7M2 21h20"
+                  fill="none" stroke="#0D6EFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="ind__body">
+          <h4 class="ind__title">Public Sector &amp; Smart Cities</h4>
+          <p class="ind__text">
+            Government-grade platforms for <span class="hi">transparent governance</span> and <span class="hi">smart urban innovation</span>.<br>
+            Reaching millions of citizens with secure digital public services.
+          </p>
+        </div>
+      </article>
+
+      <!-- Manufacturing & Supply Chain (Cog / gear) -->
+      <article class="ind reveal">
+        <div class="ind__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3.2" fill="none" stroke="#0D6EFD" stroke-width="2"/>
+            <path d="M19.4 15a8 8 0 0 0 0-2l2-1.2-2-3.4-2.3.5a8 8 0 0 0-1.7-1L13 4h-2l-.5 2.9a8 8 0 0 0-1.7 1L6.5 7.4l-2 3.4 2 1.2a8 8 0 0 0 0 2L4.5 16l2 3.4 2.5-.6c.5.4 1.1.7 1.7 1L11 22h2l.4-2.2c.6-.3 1.2-.6 1.7-1l2.5.6 2-3.4-2.2-1z"
+                  fill="none" stroke="#3AA1FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="ind__body">
+          <h4 class="ind__title">Manufacturing &amp; Supply Chain</h4>
+          <p class="ind__text">
+            IoT-driven <span class="hi">automation</span>, <span class="hi">predictive analytics</span>, and <span class="hi">intelligent logistics</span>.<br>
+            Driving resilience and efficiency across global supply networks.
+          </p>
+        </div>
+      </article>
+
+      <!-- Consumer & Digital Commerce (Cart) -->
+      <article class="ind reveal">
+        <div class="ind__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <circle cx="9" cy="20" r="1.7" fill="none" stroke="#3AA1FF" stroke-width="2"/>
+            <circle cx="17" cy="20" r="1.7" fill="none" stroke="#3AA1FF" stroke-width="2"/>
+            <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.8h7.8a2 2 0 0 0 2-1.6L21 8H7"
+                  fill="none" stroke="#0D6EFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="ind__body">
+          <h4 class="ind__title">Consumer &amp; Digital Commerce</h4>
+          <p class="ind__text">
+            Enterprise-scale commerce platforms that <span class="hi">personalize</span>, <span class="hi">scale</span>, and <span class="hi">globalize</span> retail.<br>
+            Transforming digital-first businesses into global commerce leaders.
+          </p>
+        </div>
+      </article>
+
+      <!-- Technology & Digital Innovators (Link / infinity vibe) -->
+      <article class="ind reveal">
+        <div class="ind__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M7.5 15.5a3.5 3.5 0 1 1 0-7c2.5 0 4.5 3 4.5 3s2-3 4.5-3a3.5 3.5 0 1 1 0 7c-2.5 0-4.5-3-4.5-3s-2 3-4.5 3z"
+                  fill="none" stroke="#0D6EFD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="ind__body">
+          <h4 class="ind__title">Technology &amp; Digital Innovators</h4>
+          <p class="ind__text">
+            Enterprise-grade engineering for <span class="hi">SaaS firms</span>, <span class="hi">IT leaders</span>, and <span class="hi">digital disruptors</span>.<br>
+            Helping innovators move from product to platform, and from local to global.
+          </p>
+        </div>
+      </article>
+
+    </div>
+
+    <p class="inds__closing">
+      <strong>Our Strategic Advantage</strong><br>
+      By focusing on these six industries, UGEBALL ensures every solution we deliver creates <span class="hi">certainty</span>, <span class="hi">scale</span>, and <span class="hi">leadership</span> — turning today’s challenges into tomorrow’s opportunities.
+    </p>
+  </div>
+</section>
+
+<style>
+.inds, .inds * { font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif }
+.inds{ padding:72px 20px }
+.inds__wrap{ max-width:1100px; margin:0 auto; color:#0b0b10 }
+.inds__eyebrow{ margin:0; text-transform:uppercase; letter-spacing:.14em; font-weight:800; font-size:.82rem; color:#6c757d; text-align:center }
+.inds__title{ margin:6px 0 10px; text-align:center; font-weight:900; font-size:clamp(1.8rem,4vw,2.6rem); line-height:1.15 }
+.ink-gradient{ background:linear-gradient(90deg,#0D6EFD,#243B6B 55%,#0A1931 100%); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent }
+.inds__lede{ max-width:78ch; margin:18px auto 28px; text-align:center; font-size:1.06rem; color:#50505c }
+.hi{ background:linear-gradient(90deg,#0D6EFD,#6EA8FE 45%,#6F42C1); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; font-weight:800 }
+
+/* Grid & cards */
+.inds__grid{ display:grid; gap:18px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); max-width:1100px; margin:0 auto 14px }
+.ind{ background:#fff; border:1px solid rgba(13,110,253,.12); border-radius:14px; padding:18px; box-shadow:0 8px 20px rgba(13,110,253,.06); transform:translateY(10px); opacity:0; display:flex; gap:14px }
+.ind.reveal{ transform:translateY(0); opacity:1; transition:.5s ease }
+.ind:hover{ box-shadow:0 12px 28px rgba(13,110,253,.10); transform:translateY(-2px); transition:.25s ease }
+
+/* Icon sizing to match your Values look */
+.ind__icon{ min-width:42px; display:grid; place-items:flex-start }
+.ind__icon svg{ width:34px; height:34px }
+
+/* Titles & text */
+.ind__title{
+  margin:0 0 6px; font-size:1.06rem; font-weight:900;
+  background:linear-gradient(90deg,#0D6EFD,#243B6B 60%,#0A1931);
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent
+}
+.ind__text{ margin:0; color:#40414a; font-size:.98rem; line-height:1.5 }
+.proof{ display:block; margin-top:8px; font-weight:800; color:#0D6EFD }
+
+/* Closing */
+.inds__closing{ margin:34px auto 0; text-align:center; max-width:74ch; font-weight:700; font-size:1.06rem; color:#202127 }
+</style>
+
+<script>
+/* Reveal on scroll */
+(function(){
+  const els = document.querySelectorAll('#industries .ind');
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('reveal'); io.unobserve(e.target); }
+    });
+  },{threshold:.15});
+  els.forEach(el=>io.observe(el));
+})();
+</script>
+<!-- =========================================
+  VISION — Dynamic Version
+  Effects: cycling headline keyword + animated gradient highlights + underline sweep
+  ========================================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+<section id="vision" class="vision-dyn">
+  <div class="vision__wrap">
+    <h2 class="vision__eyebrow">Executive Vision</h2>
+
+    <!-- Headline with cycling word -->
+    <h3 class="vision__title" aria-live="polite">
+      <span class="vision__emoji">🚀</span>
+      Defining Tomorrow’s <span class="cycle ink-gradient" id="cycleWord">Enterprises</span>
+    </h3>
+
+    <p class="vision__lede">
+      At UGEBALL, we don’t just respond to change — we <span class="hi">design what comes next</span>.
+      Enterprises that partner with us gain more than platforms; they gain the ability to
+      <span class="hi">innovate with confidence</span>, <span class="hi">scale without limits</span>,
+      and <span class="hi">lead markets with certainty</span>.
+    </p>
+
+    <p class="vision__body">
+      We believe tomorrow’s leaders won’t be defined by size alone, but by their ability to
+      <span class="hi">adapt</span>, <span class="hi">secure</span>, and <span class="hi">create impact</span> on a global stage.
+      That’s why our engineering goes beyond technology — it becomes the foundation of
+      <span class="hi">resilience</span>, <span class="hi">trust</span>, and <span class="hi">long-term growth</span>.
+    </p>
+
+    <p class="vision__proof">
+      ➡ From <strong>cloud ecosystems</strong> powering millions of users to
+      <strong>AI-driven insights</strong> that reshape industries, UGEBALL builds the
+      <strong>digital backbones</strong> of enterprises that will define the next decade.
+    </p>
+
+    <!-- Outcome chips -->
+    <ul class="vision__chips" aria-label="Strategic outcomes">
+      <li>✅ Innovate with confidence</li>
+      <li>✅ Scale without limits</li>
+      <li>✅ Lead with certainty</li>
+      <li>✅ Build resilient, trusted systems</li>
+    </ul>
+  </div>
+</section>
+
+<style>
+/* Base */
+#vision, #vision * { font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif }
+.vision-dyn{ background:#e9e9ef; padding:84px 20px }
+.vision__wrap{ max-width:1100px; margin:0 auto; color:#0b0b10 }
+
+/* Eyebrow */
+.vision__eyebrow{
+  margin:0 0 8px; text-transform:uppercase; letter-spacing:.14em;
+  font-weight:800; font-size:.8rem; color:#6c757d; text-align:center
+}
+
+/* Headline */
+.vision__title{
+  margin:0 0 12px; text-align:center; font-weight:900; line-height:1.15;
+  font-size:clamp(1.9rem,4.4vw,2.8rem); position:relative; display:inline-block;
+  left:50%; transform:translateX(-50%);
+}
+.vision__emoji{ margin-right:.35rem }
+
+/* Animated underline sweep under headline */
+.vision__title::after{
+  content:""; position:absolute; left:0; right:0; margin:0 auto; bottom:-12px;
+  width:0; height:3px; border-radius:2px;
+  background:linear-gradient(90deg,#7AA6FF,#3AA1FF);
+  animation:sweep 1.6s ease forwards .3s;
+}
+@keyframes sweep{ to{ width:140px } }
+
+/* Animated gradient text */
+.ink-gradient{
+  background:linear-gradient(270deg,#0D6EFD,#6EA8FE,#6F42C1,#0D6EFD);
+  background-size:600% 600%;
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;
+}
+
+/* Cycling word transition (fade/slide) */
+.cycle{
+  display:inline-block; min-width:8.5ch; /* keeps width steady to avoid layout jump */
+  animation:flowGradient 12s ease infinite;
+}
+@keyframes flowGradient{
+  0%{ background-position:0% 50% }
+  50%{ background-position:100% 50% }
+  100%{ background-position:0% 50% }
+}
+.fadeOut{ animation:fadeOut .35s ease forwards }
+.fadeIn{ animation:fadeIn .35s ease forwards }
+@keyframes fadeOut{ to{ opacity:0; transform:translateY(8px) } }
+@keyframes fadeIn{ from{ opacity:0; transform:translateY(-8px) } to{ opacity:1; transform:translateY(0) } }
+
+/* Paragraphs */
+.vision__lede{
+  max-width:78ch; margin:28px auto 10px; text-align:center; font-size:1.08rem; color:#444a57
+}
+.vision__body{
+  max-width:78ch; margin:8px auto 16px; text-align:center; font-size:1.02rem; color:#505766
+}
+.vision__proof{
+  max-width:78ch; margin:14px auto 0; text-align:center; font-weight:800; color:#0D6EFD
+}
+
+/* Gradient highlight token for key phrases */
+.hi{
+  background:linear-gradient(270deg,#0D6EFD,#6EA8FE,#6F42C1,#0D6EFD);
+  background-size:600% 600%;
+  -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent;
+  font-weight:900; animation:flowGradient 12s ease infinite
+}
+
+/* Chips */
+.vision__chips{
+  display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:22px auto 0; padding:0; list-style:none
+}
+.vision__chips li{
+  background:#fff; border:1px solid rgba(13,110,253,.14); color:#1f2a44;
+  padding:10px 14px; border-radius:999px; font-weight:700; font-size:.95rem;
+  box-shadow:0 8px 20px rgba(13,110,253,.07)
+}
+
+/* Responsive */
+@media (max-width:640px){
+  .vision-dyn{ padding:68px 16px }
+  .vision__chips li{ font-weight:800 }
+}
+</style>
+
+<script>
+/* Cycling headline word */
+(function(){
+  const words = ["Innovation","Scale","Leadership","Enterprises"]; // order/words to cycle
+  const el = document.getElementById('cycleWord');
+  let i = 0;
+
+  function next(){
+    el.classList.remove('fadeIn');
+    el.classList.add('fadeOut');
+    setTimeout(()=>{
+      i = (i + 1) % words.length;
+      el.textContent = words[i];
+      el.classList.remove('fadeOut');
+      el.classList.add('fadeIn');
+    }, 280); // sync with fadeOut
+  }
+
+  // start after initial render
+  setInterval(next, 2600);
+})();
+</script>
+<!-- =========================
+   Simple CTA Block
+   ========================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+<section id="cta-simple" class="cta-simple">
+  <div class="cta__wrap">
+    <h2 class="cta__title ink-gradient">Let’s Build Your Legacy Together</h2>
+
+    <a
+      class="cta__btn"
+      href="https://outlook.office.com/book/UGEBALLStrategyInnovationSessions@ugeball.com/?ismsaljsauthenabled"
+      target="_blank"
+      rel="noopener"
+    >
+      Book a Strategy Session →
+    </a>
+  </div>
+</section>
+
+<style>
+#cta-simple, #cta-simple * {
+  font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif
+}
+.cta-simple{
+  background:#e9e9ef;
+  padding:84px 20px;
+  text-align:center;
+}
+.cta__wrap{ max-width:900px; margin:0 auto }
+
+.cta__title{
+  font-weight:900;
+  font-size:clamp(1.9rem,4.4vw,2.8rem);
+  margin:0 0 28px;
+  line-height:1.2;
+}
+.ink-gradient{
+  background:linear-gradient(90deg,#0D6EFD,#243B6B 55%,#0A1931 100%);
+  -webkit-background-clip:text; background-clip:text;
+  -webkit-text-fill-color:transparent; color:transparent;
+}
+
+/* CTA Button */
+.cta__btn{
+  display:inline-block;
+  padding:14px 26px;
+  font-weight:800;
+  font-size:1.05rem;
+  color:#fff;
+  text-decoration:none;
+  border-radius:12px;
+  background:linear-gradient(90deg,#3AA1FF,#0D6EFD);
+  box-shadow:0 10px 22px rgba(13,110,253,.22);
+  transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+}
+.cta__btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 14px 30px rgba(13,110,253,.28);
+  filter:saturate(1.05)
+}
+.cta__btn:focus-visible{
+  outline:3px solid #6EA8FE; outline-offset:3px
+}
+</style>
+<!-- =========================
+   FOOTER — UGEBALL
+   ========================= -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&display=swap" rel="stylesheet">
+
+<footer id="footer" class="footer">
+  <div class="footer__wrap">
+
+    <!-- Left: Brand -->
+    <div class="footer__brand">
+      <h3 class="footer__logo">UGEBALL</h3>
+      <p class="footer__tagline">Engineering Certainty. Defining Tomorrow’s Enterprises.</p>
+    </div>
+
+    <!-- Middle: Links -->
+    <nav class="footer__nav" aria-label="Footer navigation">
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#industries">Industries</a></li>
+        <li><a href="#alliances">Global Alliances</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- Right: Trust Signals -->
+    <div class="footer__trust">
+      <p><strong>Trusted by Microsoft</strong><br>
+      <strong>Recognized by the Government of India</strong></p>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer__bottom">
+    <p>© 2025 UGEBALL. All Rights Reserved.</p>
+    <ul class="footer__legal">
+      <li><a href="#privacy">Privacy &amp; Cookies</a></li>
+      <li><a href="#terms">Terms of Use</a></li>
+    </ul>
+  </div>
+</footer>
+
+<style>
+#footer, #footer * {
+  font-family:'Nunito',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+
+.footer{
+  background:#0A1931;
+  color:#e9e9ef;
+  padding:60px 20px 20px;
+}
+.footer__wrap{
+  max-width:1200px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:30px;
+  align-items:start;
+}
+
+/* Brand */
+.footer__logo{
+  margin:0 0 6px;
+  font-weight:900;
+  font-size:1.4rem;
+  color:#fff;
+}
+.footer__tagline{
+  margin:0;
+  font-size:.95rem;
+  color:#adb5bd;
+  line-height:1.4;
+}
+
+/* Nav */
+.footer__nav ul{
+  list-style:none;
+  padding:0;
+  margin:0;
+}
+.footer__nav li{
+  margin:8px 0;
+}
+.footer__nav a{
+  color:#e9e9ef;
+  text-decoration:none;
+  font-weight:600;
+  transition:color .2s ease;
+}
+.footer__nav a:hover{
+  color:#3AA1FF;
+}
+
+/* Trust signals */
+.footer__trust p{
+  margin:0;
+  font-size:.95rem;
+  font-weight:700;
+  color:#f8f9fa;
+  line-height:1.5;
+}
+
+/* Bottom bar */
+.footer__bottom{
+  margin-top:40px;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.15);
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.footer__bottom p{
+  margin:0;
+  font-size:.85rem;
+  color:#adb5bd;
+}
+.footer__legal{
+  list-style:none;
+  display:flex;
+  gap:16px;
+  margin:0;
+  padding:0;
+}
+.footer__legal a{
+  font-size:.85rem;
+  color:#adb5bd;
+  text-decoration:none;
+  transition:color .2s ease;
+}
+.footer__legal a:hover{
+  color:#3AA1FF;
+}
+
+/* Responsive */
+@media(max-width:800px){
+  .footer__wrap{ grid-template-columns:1fr; text-align:center }
+  .footer__trust p{ margin-top:10px }
+}
+</style>
+
+
