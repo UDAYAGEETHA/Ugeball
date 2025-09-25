@@ -1,0 +1,322 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UGEBALL - Contact Us</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    background: linear-gradient(180deg, #f5f6fa, #e0e4eb);
+    color: #1f2937;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: auto;
+    padding: 80px 30px;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    background: linear-gradient(90deg, #0d6efd, #6f42c1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+  }
+
+  p.subtitle {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #4b5563;
+    margin-bottom: 80px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease 0.3s;
+  }
+
+  .contact-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: space-between;
+  }
+
+  .contact-card, .form-card {
+    flex: 1 1 550px;
+    background: #ffffffcc;
+    padding: 50px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    transition: transform 0.5s, box-shadow 0.5s, opacity 1s ease;
+    opacity: 0;
+    transform: translateY(80px);
+  }
+
+  .contact-card:hover, .form-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+  }
+
+  .contact-card h2, .form-card h2 {
+    font-size: 1.8rem;
+    color: #0d6efd;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+  }
+
+  .icon-svg {
+    width: 32px;
+    height: 32px;
+    transition: transform 0.3s;
+  }
+  .icon-svg:hover {
+    transform: rotate(15deg) scale(1.3);
+  }
+
+  .contact-card p, .form-card p {
+    line-height: 1.8;
+    margin-bottom: 15px;
+  }
+
+  .contact-card a {
+    color: #0d6efd;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+  .contact-card a:hover {
+    color: #6f42c1;
+  }
+
+  .form-group {
+    position: relative;
+    margin-bottom: 25px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 18px 15px 18px 15px;
+    border-radius: 12px;
+    border: 1px solid #d1d5db;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+    background: rgba(255,255,255,0.9);
+  }
+
+  .form-group label {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+    font-size: 1rem;
+    pointer-events: none;
+    transition: 0.3s;
+    background: rgba(255,255,255,0.9);
+    padding: 0 5px;
+  }
+
+  .form-group input:focus + label,
+  .form-group input:not(:placeholder-shown) + label,
+  .form-group textarea:focus + label,
+  .form-group textarea:not(:placeholder-shown) + label {
+    top: -12px;
+    font-size: 0.85rem;
+    color: #0d6efd;
+  }
+
+  .form-card button {
+    background: linear-gradient(90deg, #0d6efd, #6f42c1);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 18px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: 0.4s;
+  }
+
+  .form-card button::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.2);
+    transition: 0.4s;
+    z-index: 0;
+  }
+  .form-card button:hover::before {
+    left: 0;
+  }
+
+  .social-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
+  .social-links a {
+    text-decoration: none;
+    color: #0d6efd;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+  }
+
+  .social-links a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    background: #6f42c1;
+    left: 0;
+    bottom: -3px;
+    transition: 0.3s;
+  }
+
+  .social-links a:hover::after {
+    width: 100%;
+  }
+
+  .bg-dynamic {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    top: -50%;
+    left: -50%;
+    background: radial-gradient(circle, rgba(13,110,253,0.2), rgba(111,66,193,0.1));
+    z-index: -1;
+    animation: rotate 60s linear infinite;
+  }
+
+  @keyframes rotate {
+    0% {transform: rotate(0deg);}
+    100% {transform: rotate(360deg);}
+  }
+
+  @media (max-width: 992px) {
+    .contact-section { flex-direction: column; gap: 40px; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-dynamic"></div>
+
+<div class="container">
+  <h1 class="fade-in">Contact Us</h1>
+  <p class="subtitle fade-in">Let’s Build the Future Together. Whether you’re exploring a new project, seeking a strategic partner, or simply want to learn more about UGEBALL, our team is here to help.</p>
+
+  <div class="contact-section">
+    <div class="contact-card fade-in">
+      <h2>
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <defs><linearGradient id="gradLocation" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0d6efd"/><stop offset="100%" stop-color="#6f42c1"/></linearGradient></defs>
+          <path fill="url(#gradLocation)" d="M12 2C8.14 2 5 5.14 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.86-3.14-7-7-7z"/>
+          <circle fill="white" cx="12" cy="9" r="2.5"/>
+        </svg>
+        Global Headquarters
+      </h2>
+      <p>UGEBALL Technologies Pvt. Ltd.<br>Chennai, India</p>
+
+      <h2>
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <defs><linearGradient id="gradPhone" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0d6efd"/><stop offset="100%" stop-color="#6f42c1"/></linearGradient></defs>
+          <path fill="url(#gradPhone)" d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.48 2.53.74 3.88.74a1 1 0 011 1v3.5a1 1 0 01-1 1C10.07 21.5 2.5 13.93 2.5 4a1 1 0 011-1H7a1 1 0 011 1c0 1.35.26 2.67.74 3.88a1 1 0 01-.21 1.11l-2.91 2.8z"/>
+        </svg>
+        Get in Touch
+      </h2>
+      <p>Phone: <a href="tel:+91XXXXXXXXXX">+91-XXXXXXXXXX</a><br>Email: <a href="mailto:info@ugeball.com">info@ugeball.com</a><br>Business Hours: Mon–Fri, 9AM–6PM IST</p>
+
+      <h2>
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <defs><linearGradient id="gradGlobe" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0d6efd"/><stop offset="100%" stop-color="#6f42c1"/></linearGradient></defs>
+          <circle cx="12" cy="12" r="10" fill="url(#gradGlobe)"/>
+        </svg>
+        Partner With Us
+      </h2>
+      <p>As a Microsoft Partner and MCA-registered company, UGEBALL is trusted by enterprises worldwide to engineer scalable, secure, and future-ready platforms.</p>
+
+      <h2>
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <defs><linearGradient id="gradLink" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0d6efd"/><stop offset="100%" stop-color="#6f42c1"/></linearGradient></defs>
+          <path fill="url(#gradLink)" d="M3.9,12c0,2.3,1.9,4.2,4.2,4.2h3v-1.5h-3c-1.5,0-2.7-1.2-2.7-2.7S7.6,9.3,9.1,9.3h3V7.8h-3C5.8,7.8,3.9,9.7,3.9,12z M14.7,7.8v1.5h3c1.5,0,2.7,1.2,2.7,2.7s-1.2,2.7-2.7,2.7h-3v1.5h3c2.3,0,4.2-1.9,4.2-4.2S17,7.8,14.7,7.8z"/>
+        </svg>
+        Stay Connected
+      </h2>
+      <!-- Inline Social Links -->
+      <div class="social-links">
+        <a href="#"><svg class="icon-svg" viewBox="0 0 24 24"><defs><linearGradient id="gradLinkedIn" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0d6efd"/><stop offset="100%" stop-color="#6f42c1"/></linearGradient></defs><path fill="url(#gradLinkedIn)" d="M4.98 3.5C3.88 3.5 3 4.38 3 5.48S3.88 7.5 4.98 7.5 6.96 6.62 6.96 5.48 6.08 3.5 4.98 3.5zM3.5 8.98h3v12h-3v-12zM9.5 8.98h2.88v1.64h.04c.4-.75 1.38-1.54 2.84-1.54 3.03 0 3.59 2 3.59 4.59v5.31h-3v-4.72c0-1.12-.02-2.55-1.56-2.55-1.56 0-1.8 1.22-1.8 2.48v4.79h-3v-12z"/></svg>LinkedIn</a>
+        <a href="#"><svg class="icon-svg" viewBox="0 0 24 24"><defs><linearGradient id="gradTwitter" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0d6efd"/><stop offset="100%" stop-color="#6f42c1"/></linearGradient></defs><path fill="url(#gradTwitter)" d="M22.46 6c-.77.35-1.6.59-2.46.7a4.27 4.27 0 001.88-2.37 8.48 8.48 0 01-2.7 1.03 4.23 4.23 0 00-7.21 3.86A12 12 0 013 4.92a4.23 4.23 0 001.31 5.63 4.2 4.2 0 01-1.92-.53v.05a4.23 4.23 0 003.39 4.15 4.28 4.28 0 01-1.91.07 4.24 4.24 0 003.95 2.94A8.48 8.48 0 012 19.54a12 12 0 006.29 1.84c7.55 0 11.68-6.26 11.68-11.68 0-.18-.01-.36-.02-.53A8.36 8.36 0 0022.46 6z"/></svg>Twitter</a>
+        <a href="#"><svg class="icon-svg" viewBox="0 0 24 24"><defs><linearGradient id="gradFacebook" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0d6efd"/><stop offset="100%" stop-color="#6f42c1"/></linearGradient></defs><path fill="url(#gradFacebook)" d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.99 3.66 9.13 8.44 9.88v-6.99H7.9v-2.89h2.54V9.83c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.89h-2.34v6.99C18.34 21.13 22 16.99 22 12z"/></svg>Facebook</a>
+        <a href="#"><svg class="icon-svg" viewBox="0 0 24 24"><defs><linearGradient id="gradInstagram" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0d6efd"/><stop offset="100%" stop-color="#6f42c1"/></linearGradient></defs><path fill="url(#gradInstagram)" d="M7 2C4.2 2 2 4.2 2 7v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V7c0-2.8-2.2-5-5-5H7zm0 2h10c1.65 0 3 1.35 3 3v10c0 1.65-1.35 3-3 3H7c-1.65 0-3-1.35-3-3V7c0-1.65 1.35-3 3-3zm5 2a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm4.5-.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z"/></svg>Instagram</a>
+      </div>
+    </div>
+
+    <!-- Form Card -->
+    <div class="form-card fade-in">
+      <h2>
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <defs><linearGradient id="gradMail" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#0d6efd"/><stop offset="100%" stop-color="#6f42c1"/></linearGradient></defs>
+          <path fill="url(#gradMail)" d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zm0 2v.01L12 13l8-6.99V6H4zm0 12h16V8l-8 6-8-6v10z"/>
+        </svg>
+        Quick Connect Form
+      </h2>
+      <form>
+        <div class="form-group"><input type="text" name="name" placeholder=" " required><label>Full Name</label></div>
+        <div class="form-group"><input type="text" name="company" placeholder=" "><label>Company / Organization</label></div>
+        <div class="form-group"><input type="email" name="email" placeholder=" " required><label>Email Address</label></div>
+        <div class="form-group"><input type="tel" name="phone" placeholder=" "><label>Phone Number</label></div>
+        <div class="form-group"><textarea name="message" rows="6" placeholder=" " required></textarea><label>Tell us about your project or needs...</label></div>
+        <button type="submit">Request a Strategy Call →</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  const faders = document.querySelectorAll('.fade-in');
+  const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+  const appearOnScroll = new IntersectionObserver(function(entries, observer){
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+  faders.forEach(fader => appearOnScroll.observe(fader));
+</script>
+</body>
+</html>
+
