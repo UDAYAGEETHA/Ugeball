@@ -113,36 +113,6 @@ io.observe(aboutHero);
 // script.js
 // Adds staggered animation delays to cards and a small accessible enhancement.
 
-document.addEventListener('DOMContentLoaded', function () {
-  const cards = document.querySelectorAll('.card');
-
-  // Apply a small stagger so CSS animation plays in order.
-  cards.forEach((card, i) => {
-    const delay = 0.15 * (i + 1); // seconds
-    card.style.animationDelay = `${delay}s`;
-  });
-
-  // Improve keyboard accessibility: pressing Enter toggles a subtle focus transform
-  cards.forEach(card => {
-    card.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        // toggle a class for a quick feedback (no persistent changes)
-        card.classList.add('keyboard-press');
-        setTimeout(() => card.classList.remove('keyboard-press'), 220);
-      }
-    });
-  });
-
-  // Optional: handle reduced-motion preference (JS fallback)
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (prefersReduced.matches) {
-    cards.forEach(card => {
-      card.style.animation = 'none';
-      card.style.transform = 'none';
-      card.style.opacity = '1';
-    });
-  }
-});
 
 
 
