@@ -9,9 +9,39 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 
   <!-- External CSS -->
-  <link rel="stylesheet" href="about.css">
-</head>
+  <link rel="stylesheet" href="./assets/css/about.css">
 
+  <!-- Header + Footer CSS -->
+  <link rel="stylesheet" href="./assets/css/Footer.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <nav>
+      <div class="logo" aria-hidden="true">
+        <svg viewBox="0 0 900 150" xmlns="http://www.w3.org/2000/svg" aria-label="UGEBALL logo">
+          <defs>
+            <linearGradient id="ugeball-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#3AA1FF"/>
+              <stop offset="100%" stop-color="#f7b67a"/>
+            </linearGradient>
+          </defs>
+          <text x="10" y="110" font-family="'Nunito', sans-serif"
+                font-weight="900" font-size="100"
+                fill="url(#ugeball-gradient)" letter-spacing="2">UGEBALL</text>
+        </svg>
+      </div>
+
+      <ul class="nav-links" role="navigation" aria-label="Main navigation">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="alliances.html">Global Alliances</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
 <body>
 
@@ -439,8 +469,77 @@ if (!customElements.get('ugeb-section')) {
 <!-- usage: place the component anywhere on the page -->
 <ugeb-section></ugeb-section>
 
+<!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+
+      <!-- Field 1: Logo + description + socials -->
+      <div class="footer-field footer-brand">
+        <div class="logo-box">
+          <img src="https://sere.blob.core.windows.net/hiii/Header%20Logo.jpeg"
+               alt="UGEBALL Logo" class="footer-logo">
+        </div>
+        <p class="footer-desc">
+          UGEBALL empowers businesses with next-gen digital solutions to drive growth, compliance, and innovation.
+        </p>
+
+        <!-- Social Icons -->
+        <div class="footer-socials">
+          <a href="#" class="social" aria-label="LinkedIn" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="#" class="social" aria-label="Facebook" target="_blank" rel="noopener">Facebook</a>
+          <a href="#" class="social" aria-label="X" target="_blank" rel="noopener">X</a>
+          <a href="#" class="social" aria-label="YouTube" target="_blank" rel="noopener">YouTube</a>
+          <a href="#" class="social" aria-label="Instagram" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+
+      <!-- Field 2: Explore -->
+      <div class="footer-field">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="solutions.html">Solutions</a></li>
+          <li><a href="alliances.html">Global Alliances</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Field 3: Solutions -->
+      <div class="footer-field">
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="#">Web Development</a></li>
+          <li><a href="#">AI-driven Data Analytics</a></li>
+          <li><a href="#">Cloud Systems</a></li>
+        </ul>
+      </div>
+
+      <!-- Field 4: Contact -->
+      <div class="footer-field">
+        <h4>Contact</h4>
+        <p>
+          UGEBALL HQ<br>
+          Chennai, India<br>
+          <a href="mailto:Business@ugeball.com">Business@ugeball.com</a>
+        </p>
+      </div>
+
+    </div>
+
+    <!-- Bottom Line -->
+    <div class="footer-bottom">
+      <p>© 2025 UGEBALL™. All Rights Reserved.</p>
+      <div class="footer-links">
+        <a href="#">Privacy & Cookies</a>
+        <a href="#">Terms of Use</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FOOTER JS -->
+  <script src="./assets/js/Footer.js"></script>
 
 <!-- External JS -->
-<script src="about.js" defer></script>
+<script src="./assets/js/about.js" defer></script>
 </body>
 </html>
