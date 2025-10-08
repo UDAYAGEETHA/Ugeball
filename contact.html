@@ -321,10 +321,61 @@
   }, appearOptions);
   faders.forEach(fader => appearOnScroll.observe(fader));
 </script>
+<script>
+  // Fade-in animations
+  const faders = document.querySelectorAll('.fade-in');
+  const appearOptions = { threshold: 0.2, rootMargin: "0px 0px -50px 0px" };
+  const appearOnScroll = new IntersectionObserver(function(entries, observer){
+    entries.forEach(entry => {
+      if(!entry.isIntersecting) return;
+      entry.target.style.opacity = 1;
+      entry.target.style.transform = 'translateY(0)';
+      observer.unobserve(entry.target);
+    });
+  }, appearOptions);
+  faders.forEach(fader => appearOnScroll.observe(fader));
 
+  // Power Automate Integration
+  const flowUrl = "https://default2a63978e35fd45f0824a496b7e05aa.8d.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/303d60dd108949bea7682b7482bd9d71/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=8HS6AYtik4ZIO1O40D_b_XOUejOg3fZD8RgBW5Ooqoo";
+
+  document.getElementById('quickConnectForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const form = e.target;
+    const statusEl = document.getElementById('formStatus');
+
+    const data = {
+      fullName: form.fullName.value,
+      company: form.company.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      message: form.message.value
+    };
+
+    statusEl.textContent = "Sending...";
+
+    try {
+      const resp = await fetch(flowUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+
+      if(resp.ok){
+        statusEl.textContent = "✅ Message sent successfully!";
+        form.reset();
+      } else {
+        statusEl.textContent = "⚠️ Error sending message. Please try again.";
+      }
+    } catch(err){
+      console.error(err);
+      statusEl.textContent = "⚠️ Network error. Please try again.";
+    }
+  });
+</script>
 
 
 
 </body>
 </html>
+
 
