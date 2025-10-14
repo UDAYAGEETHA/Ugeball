@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>UGEBALL — Hero with Dynamic Gradient Logos</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  /* Reset / base */
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#f5f5f7;font-family:Nunito,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;color:#122}
+  a{color:inherit}
+
+  /* Hero */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:48px 20px;
+    text-align:center;
+    overflow:hidden;
+  }
+
+  /* light shifting base gradient */
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(120deg,#f5f5f7,#e9e9ef,#f5f5f7);
+    background-size:400% 400%;
+    z-index:-3;
+    animation:bgShift 18s ease-in-out infinite;
+  }
+  @keyframes bgShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+  /* Floating background circles */
+  .hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background: radial-gradient(circle, rgba(13,110,253,0.08) 15%, transparent 15%) repeat;
+    background-size: 80px 80px;
+    animation: floatCircles 20s linear infinite;
+  }
+  @keyframes floatCircles {
+    0% { background-position: 0 0; }
+    50% { background-position: 40px 40px; }
+    100% { background-position: 0 0; }
+  }
+
+  /* content */
+  .content{position:relative;z-index:2;max-width:1100px;width:100%}
+  h1{
+    font-size:2.6rem;line-height:1.05;font-weight:800;margin-bottom:12px;
+    background:linear-gradient(90deg,#0d6efd 0%,#6ea8fe 45%,#6f42c1 100%);
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  }
+
+  p.lead{color:#333;font-size:1.05rem;margin-bottom:20px;max-width:980px;margin-left:auto;margin-right:auto}
+
+  /* highlights grid using flex so first row 3 items, second row 2 items */
+  .highlights {
+    display:flex;
+    gap:18px;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin:18px 0 26px;
+    list-style:none;
+    padding:0;
+  }
+
+  .highlight-item{
+    background: rgba(255,255,255,0.48);
+    backdrop-filter: blur(6px);
+    border-radius:14px;
+    padding:14px 18px 14px 68px;
+    font-weight:700;
+    color:#10203a;
+    min-width:260px;            
+    flex: 0 1 calc(33.333% - 22px);
+    position:relative;
+    text-align:left;
+    transition:transform .22s ease, box-shadow .22s ease;
+  }
+  .highlight-item:nth-last-child(-n+2){ 
+    flex: 0 1 calc(40% - 22px);
+  }
+
+  .highlight-item:hover{ transform:translateY(-6px); box-shadow:0 10px 30px rgba(16,32,58,0.08); }
+
+  /* icon slot (left) */
+  .icon-slot{ position:absolute; left:16px; top:50%; transform:translateY(-50%); width:44px; height:44px; display:inline-block; }
+
+  /* svg floating animation */
+  .anim-float{ animation:floatY 5.5s ease-in-out infinite; transform-origin:center; }
+  .anim-float.slow{ animation-duration:7.2s; }
+  .anim-float.fast{ animation-duration:4.4s; }
+  @keyframes floatY{ 0%{ transform:translateY(-4px)} 50%{ transform:translateY(6px)} 100%{ transform:translateY(-4px)} }
+
+  /* CTA */
+  .cta{ margin-top:6px; display:flex; justify-content:center }
+  .btn{
+    display:inline-block;padding:12px 26px;border-radius:10px;font-weight:700;text-decoration:none;color:#fff;
+    background:linear-gradient(90deg,#0d6efd,#6ea8fe,#6f42c1);
+    background-size:300% 300%;
+    animation:btnGrad 6s linear infinite;
+    box-shadow:0 8px 22px rgba(13,110,253,0.12);
+  }
+  @keyframes btnGrad{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+
+  /* responsive */
+  @media (max-width:1100px){
+    .highlight-item{ flex: 0 1 calc(45% - 22px); min-width:220px }
+    .highlight-item:nth-last-child(-n+2){ flex: 0 1 calc(45% - 22px) }
+  }
+  @media (max-width:720px){
+    h1{font-size:1.8rem}
+    .highlight-item{ flex: 0 1 calc(100% - 22px); min-width:0; padding-left:60px; margin:6px 0 }
+    .icon-slot{ left:14px; width:36px; height:36px }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero" aria-label="UGEBALL hero">
+  <div class="content">
+    <!-- single-line title -->
+    <h1>Transforming Ideas into Enterprise-Grade Platforms</h1>
+
+    <p class="lead">UGEBALL partners with visionary enterprises to deliver cloud &amp; platform transformation, intelligent data platforms, premium web platforms, Microsoft-certified solutions and strategy-driven innovation.</p>
+
+    <ul class="highlights" role="list">
+      <!-- first row: 3 items -->
+
+      <!-- 1 Cloud -->
+      <li class="highlight-item" role="listitem">
+        <span class="icon-slot">
+          <svg class="anim-float slow" viewBox="0 0 64 64" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="c1" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0" stop-color="#00c6ff">
+                  <animate attributeName="stop-color" values="#00c6ff;#6ea8fe;#ff6ec7;#00c6ff" dur="6s" repeatCount="indefinite"/>
+                </stop>
+                <stop offset="0.55" stop-color="#6ea8fe">
+                  <animate attributeName="stop-color" values="#6ea8fe;#ff6ec7;#0d6efd;#6ea8fe" dur="6s" repeatCount="indefinite"/>
+                </stop>
+                <stop offset="1" stop-color="#ff6ec7">
+                  <animate attributeName="stop-color" values="#ff6ec7;#0d6efd;#6ea8fe;#ff6ec7" dur="6s" repeatCount="indefinite"/>
+                </stop>
+              </linearGradient>
+            </defs>
+            <path fill="url(#c1)" d="M48 32a12 12 0 0 0-12-12c-2.8 0-5.4 1-7.3 2.7A9.5 9.5 0 0 0 20 24a8 8 0 0 0-1 15.9H48a8 8 0 0 0 0-15.9z"/>
+          </svg>
+        </span>
+        Cloud &amp; Platform Transformation
+      </li>
+
+      <!-- 2 Data -->
+      <li class="highlight-item" role="listitem">
+        <span class="icon-slot">
+          <svg class="anim-float fast" viewBox="0 0 64 64" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="d1" x1="0" x2="1"><stop offset="0" stop-color="#ff6ec7"/><stop offset="1" stop-color="#0d6efd"/></linearGradient>
+              <linearGradient id="d2" x1="0" x2="1"><stop offset="0" stop-color="#6f42c1"/><stop offset="1" stop-color="#ffca3a"/></linearGradient>
+              <linearGradient id="d3" x1="0" x2="1"><stop offset="0" stop-color="#6ea8fe"/><stop offset="1" stop-color="#ff6ec7"/></linearGradient>
+            </defs>
+            <rect x="10" y="28" width="8" height="18" rx="2" fill="url(#d1)"/>
+            <rect x="26" y="20" width="8" height="26" rx="2" fill="url(#d2)"/>
+            <rect x="42" y="14" width="8" height="32" rx="2" fill="url(#d3)"/>
+          </svg>
+        </span>
+        Enterprise Data Intelligence
+      </li>
+
+      <!-- 3 Web -->
+      <li class="highlight-item" role="listitem">
+        <span class="icon-slot">
+          <svg class="anim-float" viewBox="0 0 64 64" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="w1" x1="0" x2="1"><stop offset="0" stop-color="#ff6ec7"/><stop offset="0.6" stop-color="#6f42c1"/><stop offset="1" stop-color="#0d6efd"/></linearGradient>
+            </defs>
+            <rect x="8" y="18" width="48" height="28" rx="3" fill="url(#w1)"/>
+            <rect x="8" y="46" width="48" height="4" rx="2" fill="url(#w1)" opacity="0.95"/>
+          </svg>
+        </span>
+        Strategic Web Platform Development
+      </li>
+
+      <!-- second row: 2 items -->
+
+      <!-- 4 Microsoft / Shield -->
+      <li class="highlight-item" role="listitem">
+        <span class="icon-slot">
+          <svg class="anim-float slow" viewBox="0 0 64 64" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="s1" x1="0" x2="1">
+                <stop offset="0" stop-color="#6f42c1">
+                  <animate attributeName="stop-color" values="#6f42c1;#ffca3a;#0d6efd;#6f42c1" dur="7.2s" repeatCount="indefinite"/>
+                </stop>
+                <stop offset="1" stop-color="#ffca3a"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#s1)" d="M32 6l18 8v12c0 11-8 20-18 22-10-2-18-11-18-22V14z"/>
+          </svg>
+        </span>
+        Microsoft-Certified Enterprise Solutions
+      </li>
+
+      <!-- 5 Strategy / Bulb -->
+      <li class="highlight-item" role="listitem">
+        <span class="icon-slot">
+          <svg class="anim-float fast" viewBox="0 0 64 64" width="44" height="44" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <defs>
+              <linearGradient id="b1" x1="0" x2="1">
+                <stop offset="0" stop-color="#ffca3a">
+                  <animate attributeName="stop-color" values="#ffca3a;#ff6ec7;#6ea8fe;#ffca3a" dur="6.5s" repeatCount="indefinite"/>
+                </stop>
+                <stop offset="1" stop-color="#6ea8fe"/>
+              </linearGradient>
+            </defs>
+            <path fill="url(#b1)" d="M32 6a14 14 0 0 0-14 14c0 7 7 10 7 20h14c0-10 7-13 7-20A14 14 0 0 0 32 6z"/>
+            <rect x="26" y="42" width="12" height="8" rx="2" fill="url(#b1)"/>
+          </svg>
+        </span>
+        Business Strategy &amp; Innovation
+      </li>
+    </ul>
+
+    <div class="cta">
+      <a class="btn" href="#" role="button">Book a Consultation</a>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
+
+<!-- WHY CHOOSE UGEBALL - Hero with Gradient Text -->
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+
+<section style="background:#e9e9ef;padding:80px 0;font-family:'Nunito',system-ui,Segoe UI,Roboto,Arial;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:40px;padding:0 20px;">
+
+    <!-- Left Side: Headline -->
+    <div style="flex:1;min-width:320px;">
+      <h2 style="
+        font-size:32px;
+        font-weight:800;
+        margin-bottom:24px;
+        background: linear-gradient(90deg, #0d6efd, #6ea8fe, #6f42c1, #0d6efd);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      ">
+        Why Visionary Enterprises Choose UGEBALL
+      </h2>
+      <p style="font-size:16px;color:#3b3b3b;line-height:1.6;margin-bottom:48px;max-width:800px;">
+        UGEBALL doesn’t just deliver solutions — we architect competitive advantage.  
+        Our clients are leaders who demand precision, reliability, and strategic insight in every technology decision.
+      </p>
+    </div>
+
+    <!-- Right Side: Feature Highlights -->
+    <div style="flex:1;min-width:320px;position:relative;">
+
+      <!-- Feature 1 -->
+      <div style="position:relative;padding-left:60px;margin-bottom:40px;">
+        <div style="width:48px;height:48px;background:#0d6efd;border-radius:50%;position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;">
+          1
+        </div>
+        <h4 style="
+          margin:0 0 6px;
+          font-size:15px;
+          font-weight:700;
+          background: linear-gradient(90deg, #0d6efd, #6ea8fe, #6f42c1, #0d6efd);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        ">Certainty in Execution</h4>
+        <p style="margin:0;color:#3b3b3b;font-size:14px;line-height:1.5;">
+          Every solution is backed by Microsoft-certified expertise and enterprise-grade engineering.
+        </p>
+      </div>
+
+      <!-- Feature 2 -->
+      <div style="position:relative;padding-left:60px;margin-bottom:40px;">
+        <div style="width:48px;height:48px;background:#6ea8fe;border-radius:50%;position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;">
+          2
+        </div>
+        <h4 style="
+          margin:0 0 6px;
+          font-size:15px;
+          font-weight:700;
+          background: linear-gradient(90deg, #0d6efd, #6ea8fe, #6f42c1, #0d6efd);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        ">Scalability with Intelligence</h4>
+        <p style="margin:0;color:#3b3b3b;font-size:14px;line-height:1.5;">
+          From cloud-native platforms to data ecosystems, we build for growth, resilience, and insight.
+        </p>
+      </div>
+
+      <!-- Feature 3 -->
+      <div style="position:relative;padding-left:60px;margin-bottom:40px;">
+        <div style="width:48px;height:48px;background:#6f42c1;border-radius:50%;position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;">
+          3
+        </div>
+        <h4 style="
+          margin:0 0 6px;
+          font-size:15px;
+          font-weight:700;
+          background: linear-gradient(90deg, #0d6efd, #6ea8fe, #6f42c1, #0d6efd);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        ">Strategic Differentiation</h4>
+        <p style="margin:0;color:#3b3b3b;font-size:14px;line-height:1.5;">
+          We align technology with business strategy to unlock new revenue streams and operational excellence.
+        </p>
+      </div>
+
+      <!-- Feature 4 -->
+      <div style="position:relative;padding-left:60px;">
+        <div style="width:48px;height:48px;background:#0d6efd;border-radius:50%;position:absolute;left:0;top:0;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;">
+          4
+        </div>
+        <h4 style="
+          margin:0 0 6px;
+          font-size:15px;
+          font-weight:700;
+          background: linear-gradient(90deg, #0d6efd, #6ea8fe, #6f42c1, #0d6efd);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        ">Premium Experience Design</h4>
+        <p style="margin:0;color:#3b3b3b;font-size:14px;line-height:1.5;">
+          Our web platforms are crafted to elevate brand presence and user engagement across global markets.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UGEBALL — Our Core Services</title>
+
+  <!-- Nunito font -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #e9e9ef;
+      --fg: #0f1723;
+      --muted: #586076;
+      --card-bg: #ffffff;
+      --brand-grad: linear-gradient(90deg, #0d6efd 0%, #6ea8fe 40%, #6f42c1 80%, #0d6efd 100%);
+      --radius: 14px;
+      --shadow: 0 6px 18px rgba(13,110,253,0.08), 0 2px 6px rgba(11,20,40,0.04);
+      --gap: 24px;
+    }
+
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:"Nunito",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background:var(--bg);
+      color:var(--fg);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.5;
+      padding:48px 20px;
+      box-sizing:border-box;
+    }
+
+    .wrap{max-width:1200px;margin:0 auto;}
+
+    .intro{
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+      margin-bottom:26px;
+    }
+    .eyebrow{
+      font-size:13px;
+      font-weight:700;
+      letter-spacing:0.08em;
+      color:#123a8a;
+      background:linear-gradient(90deg,rgba(13,110,253,0.08),rgba(111,66,193,0.04));
+      padding:6px 10px;
+      border-radius:999px;
+    }
+    h1{
+      margin:0;
+      font-size:28px;
+      line-height:1.05;
+      font-weight:800;
+      color:var(--fg);
+    }
+    p.lead{
+      margin:10px 0 0 0;
+      color:var(--muted);
+      max-width:780px;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:var(--gap);
+      margin-top:28px;
+    }
+    @media(min-width:720px){.grid{grid-template-columns:repeat(2,1fr);}}
+    @media(min-width:1100px){.grid{grid-template-columns:repeat(3,1fr);}}
+
+    .card{
+      position:relative;
+      background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(255,255,255,0.98));
+      border-radius:var(--radius);
+      padding:20px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      transition:transform .28s ease,box-shadow .28s ease;
+      min-height:220px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      border:1px solid rgba(15,23,35,0.04);
+    }
+    .card:hover{transform:translateY(-8px);box-shadow:0 16px 40px rgba(13,110,253,0.09);}
+    .card::before{
+      content:"";
+      position:absolute;
+      left:0;right:0;top:0;
+      height:6px;
+      background:var(--brand-grad);
+      border-top-left-radius:var(--radius);
+      border-top-right-radius:var(--radius);
+    }
+    .card-head{display:flex;gap:12px;align-items:center;}
+    .icon{
+      width:56px;height:56px;min-width:56px;
+      border-radius:12px;
+      display:grid;place-items:center;
+      background:linear-gradient(180deg,rgba(13,110,253,0.12),rgba(111,66,193,0.06));
+      box-shadow:inset 0 -6px 18px rgba(13,110,253,0.02);
+    }
+    .icon svg{width:34px;height:34px;transition:transform .36s cubic-bezier(.2,.9,.25,1);}
+    .card:hover .icon svg{transform:translateY(-4px) rotate(-4deg);}
+    .title{font-size:18px;font-weight:700;margin:0;}
+    .subtitle{margin:0;font-size:13px;color:var(--muted);}
+    ul.bl{margin:0;padding-left:18px;color:var(--muted);font-size:14px;list-style:none;display:grid;gap:8px;margin-top:8px;}
+    ul.bl li{position:relative;padding-left:18px;}
+    ul.bl li::before{
+      content:"";
+      position:absolute;
+      left:0;top:7px;
+      width:8px;height:8px;
+      border-radius:2px;
+      background:var(--brand-dot,#6ea8fe);
+    }
+
+    .card-footer{margin-top:auto;display:flex;gap:10px;align-items:center;}
+    .btn{
+      display:inline-flex;align-items:center;
+      padding:10px 14px;border-radius:10px;
+      font-weight:700;font-size:14px;cursor:pointer;
+      border:0;background:var(--brand-grad);color:white;
+      box-shadow:0 8px 18px rgba(13,110,253,0.12);
+      transition:transform .18s ease;
+    }
+    .btn:hover{transform:translateY(-3px);}
+    .pill{
+      padding:6px 10px;
+      font-weight:700;font-size:12px;
+      border-radius:999px;display:inline-block;
+      color:#06307a;background:rgba(13,110,253,0.08);
+    }
+    .details{max-height:0;overflow:hidden;transition:max-height .36s,opacity .28s;opacity:0;}
+    .details.open{opacity:1;max-height:360px;}
+    @media(max-width:520px){body{padding:28px 16px;}h1{font-size:22px;}.icon{width:48px;height:48px;}}
+  </style>
+</head>
+<body>
+  <div class="wrap" role="main" aria-labelledby="services-heading">
+    <div class="intro">
+      <div><div class="eyebrow">CORE SERVICES</div></div>
+      <div style="flex:1;">
+        <h1 id="services-heading">Our Core Services — Enterprise-grade outcomes, engineered</h1>
+        <p class="lead">UGEBALL delivers enterprise-grade solutions across five strategic domains — each engineered to drive transformation, scalability, and competitive advantage.</p>
+      </div>
+    </div>
+
+    <section class="grid" aria-label="UGEBALL services list">
+      <!-- Card 1 -->
+      <article class="card">
+        <div class="card-head">
+          <div class="icon" style="--brand-dot:#0d6efd;">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M6 19a4 4 0 0 1 0-8 5 5 0 0 1 9.9-1.2A3.5 3.5 0 0 1 20 13.5V14" stroke="#0d6efd" stroke-width="1.6" stroke-linecap="round"/><path d="M4 19h14" stroke="#6f42c1" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div><h3 class="title">Cloud & Platform Transformation</h3><p class="subtitle">Modernize infrastructure with secure, cloud-native platforms.</p></div>
+        </div>
+        <ul class="bl"><li>Cloud migration & modernization</li><li>DevOps & platform engineering</li><li>Multi-cloud architecture & governance</li></ul>
+        <div class="card-footer"><span class="pill">Enterprise</span><button class="btn" onclick="openDetail('d1')">Learn more</button></div>
+        <div id="d1" class="details"><p style="margin:12px 0;color:var(--muted);">We accelerate cloud adoption with secure migration plans, platform automation, and optimization.</p></div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="card">
+        <div class="card-head">
+          <div class="icon" style="--brand-dot:#6ea8fe;">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="6" rx="2" stroke="#6ea8fe" stroke-width="1.6"/><rect x="6" y="14" width="12" height="6" rx="2" stroke="#6f42c1" stroke-width="1.6"/><path d="M12 10v4" stroke="#0d6efd" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <div><h3 class="title">Enterprise Data Intelligence</h3><p class="subtitle">Unify, analyze, and visualize enterprise data for actionable insight.</p></div>
+        </div>
+        <ul class="bl"><li>Data lakes & warehouses</li><li>AI/ML-powered analytics</li><li>Data governance & compliance</li></ul>
+        <div class="card-footer"><span class="pill">Analytics</span><button class="btn" onclick="openDetail('d2')">Learn more</button></div>
+        <div id="d2" class="details"><p style="margin:12px 0;color:var(--muted);">Design and operate data platforms that deliver trusted data and accelerate ML-driven insights.</p></div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="card">
+        <div class="card-head">
+          <div class="icon" style="--brand-dot:#6f42c1;">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M3 12h18" stroke="#6f42c1" stroke-width="1.4" stroke-linecap="round"/><path d="M7 4v16" stroke="#0d6efd" stroke-width="1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="2.2" stroke="#6ea8fe" stroke-width="1.4"/></svg>
+          </div>
+          <div><h3 class="title">Strategic Web Platform Development</h3><p class="subtitle">Premium web platforms and UX for enterprise audiences.</p></div>
+        </div>
+        <ul class="bl"><li>Enterprise websites & portals</li><li>Headless CMS & scalable architecture</li><li>UX/UI design for global audiences</li></ul>
+        <div class="card-footer"><span class="pill">Digital</span><button class="btn" onclick="openDetail('d3')">Learn more</button></div>
+        <div id="d3" class="details"><p style="margin:12px 0;color:var(--muted);">We build resilient, accessible, and fast web platforms that convert and scale globally.</p></div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="card">
+        <div class="card-head">
+          <div class="icon" style="--brand-dot:#0d6efd;">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v8" stroke="#0d6efd" stroke-width="1.6" stroke-linecap="round"/><path d="M8 12h8" stroke="#6ea8fe" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="7" stroke="#6f42c1" stroke-width="1.2"/></svg>
+          </div>
+          <div><h3 class="title">Microsoft-Certified Enterprise Solutions</h3><p class="subtitle">Certified expertise across Azure, Dynamics, Power Platform, and M365.</p></div>
+        </div>
+        <ul class="bl"><li>Azure cloud & security</li><li>Dynamics 365 CRM/ERP</li><li>Power BI & Power Apps</li></ul>
+        <div class="card-footer"><span class="pill">Certified</span><button class="btn" onclick="openDetail('d4')">Learn more</button></div>
+        <div id="d4" class="details"><p style="margin:12px 0;color:var(--muted);">We combine Microsoft-certified architects and delivery teams to deploy integrated enterprise solutions.</p></div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="card">
+        <div class="card-head">
+          <div class="icon" style="--brand-dot:#6ea8fe;">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 20h16" stroke="#6ea8fe" stroke-width="1.4" stroke-linecap="round"/><path d="M7 7c1.2-2 4-3 6-3s4.8 1 6 3" stroke="#6f42c1" stroke-width="1.4" stroke-linecap="round"/><circle cx="12" cy="12" r="2" stroke="#0d6efd" stroke-width="1.4"/></svg>
+          </div>
+          <div><h3 class="title">Business Strategy & Innovation</h3><p class="subtitle">Align technology and strategy to create measurable impact.</p></div>
+        </div>
+        <ul class="bl"><li>Digital transformation roadmaps</li><li>Innovation labs & prototyping</li><li>Enterprise architecture consulting</li></ul>
+        <div class="card-footer"><span class="pill">Strategy</span><button class="btn" onclick="openDetail('d5')">Learn more</button></div>
+        <div id="d5" class="details"><p style="margin:12px 0;color:var(--muted);">We help enterprises prioritize digital investments, prototype quickly, and create transformation programs with measurable KPIs.</p></div>
+      </article>
+    </section>
+  </div>
+
+  <script>
+    function openDetail(id){
+      const el=document.getElementById(id);
+      if(!el)return;
+      const isOpen=el.classList.contains('open');
+      document.querySelectorAll('.details.open').forEach(d=>{if(d!==el)d.classList.remove('open');});
+      if(!isOpen)el.classList.add('open');else el.classList.remove('open');
+    }
+  </script>
+</body>
+</html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>UGEBALL — Impact in Action</title>
+
+  <!-- Nunito -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #e9e9ef;
+      --fg: #0f1723;
+      --muted: #586076;
+      --brand-grad: linear-gradient(90deg, #0d6efd 0%, #6ea8fe 40%, #6f42c1 80%, #0d6efd 100%);
+      --card-radius: 12px;
+      --shadow: 0 10px 30px rgba(11,20,40,0.06), 0 4px 12px rgba(13,110,253,0.04);
+      --gap: 20px;
+    }
+
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family:"Nunito", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      background:var(--bg);
+      color:var(--fg);
+      -webkit-font-smoothing:antialiased;
+      padding:44px 20px;
+      box-sizing:border-box;
+      line-height:1.5;
+    }
+
+    .impact-wrap{max-width:1100px;margin:0 auto;position:relative;}
+    .section-head{display:flex;flex-direction:column;gap:8px;margin-bottom:20px;}
+    .eyebrow{display:inline-block;padding:6px 10px;border-radius:999px;font-weight:800;font-size:12px;color:#06307a;background:linear-gradient(90deg, rgba(13,110,253,0.08), rgba(111,66,193,0.04));letter-spacing:0.06em;}
+    h2{margin:0;font-size:26px;font-weight:800;
+      background: var(--brand-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+    p.lead{margin:6px 0 0;color:var(--muted);max-width:860px;}
+
+    /* Grid: left snapshots, right testimonials */
+    .impact-grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:var(--gap);
+      margin-top:18px;
+    }
+    @media(min-width:900px){
+      .impact-grid{grid-template-columns: 1fr 420px; align-items:start;}
+    }
+
+    /* Snapshots cards */
+    .snapshots{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+    @media(min-width:720px){
+      .snapshots{grid-template-columns:repeat(2, 1fr);}
+    }
+
+    .snapshots-head h3{
+      margin:0;font-size:16px;font-weight:800;
+      background: var(--brand-grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .snapshot{
+      background:linear-gradient(180deg, #fff, rgba(255,255,255,0.98));
+      border-radius: var(--card-radius);
+      padding:16px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(11,20,40,0.04);
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .snap-icon{
+      width:52px;height:52px;border-radius:10px;display:grid;place-items:center;
+      background:linear-gradient(180deg, rgba(13,110,253,0.10), rgba(111,66,193,0.04));
+      flex-shrink:0;
+    }
+    .snap-icon svg{width:28px;height:28px;}
+    .snap-body{flex:1;}
+    .snap-title{font-weight:700;margin:0;font-size:15px;}
+    .snap-sub{margin:6px 0 0;color:var(--muted);font-size:14px;}
+
+    /* "Selected Success Snapshots" header */
+    .snapshots-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+    .tag{
+      font-size:12px;font-weight:700;padding:6px 10px;border-radius:999px;background:rgba(13,110,253,0.08);color:#06307a;
+    }
+
+    /* Testimonials column */
+    .testimonials{
+      position:relative;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .test-card{
+      background:linear-gradient(180deg,#fff,#fbfbff);
+      border-radius:12px;
+      padding:18px;
+      box-shadow:var(--shadow);
+      border:1px solid rgba(11,20,40,0.04);
+      min-height:150px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      justify-content:center;
+    }
+    .quote{
+      font-size:15px;
+      font-weight:600;
+      line-height:1.4;
+      color:var(--fg);
+      position:relative;
+      margin:0;
+    }
+    .quote:before{
+      content:"“";
+      position:absolute;
+      left:-10px;
+      top:-14px;
+      font-size:42px;
+      color:rgba(13,110,253,0.12);
+      font-weight:800;
+      line-height:1;
+    }
+    .who{font-size:13px;color:var(--muted);font-weight:700;margin-top:6px;}
+
+    /* testimonial nav (small dots) */
+    .t-nav{display:flex;gap:8px;align-items:center;margin-top:6px;}
+    .t-dot{width:10px;height:10px;border-radius:50%;background:rgba(11,20,40,0.08);cursor:pointer;border:2px solid transparent;transition:all .18s;}
+    .t-dot.active{background:#fff;border-color:rgba(13,110,253,0.18);box-shadow:0 6px 14px rgba(13,110,253,0.06);}
+
+    /* subtle decorative flourish */
+    .flourish{
+      display:none;
+    }
+    @media(min-width:1100px){ .flourish{ display:block; position:absolute; right:-80px; top:-60px; width:320px; height:320px; background:radial-gradient(circle at 20% 20%, rgba(110,168,254,0.12), rgba(111,66,193,0.04) 35%, transparent 60%); filter:blur(40px);pointer-events:none; } }
+
+    /* Accessibility tweaks */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+  </style>
+</head>
+<body>
+  <section class="impact-wrap" aria-labelledby="impact-heading">
+    <div class="flourish" aria-hidden="true"></div>
+
+    <header class="section-head">
+      <span class="eyebrow">IMPACT</span>
+      <h2 id="impact-heading">Impact in Action</h2>
+      <p class="lead">UGEBALL’s solutions are trusted by visionary enterprises to deliver measurable outcomes across industries. From cloud transformation to intelligent data platforms, our work speaks for itself.</p>
+    </header>
+
+    <div class="impact-grid">
+      <!-- Left: Snapshots -->
+      <div>
+        <div class="snapshots-head" aria-hidden="false">
+          <h3>Selected Success Snapshots</h3>
+          <div class="tag">Proven Outcomes</div>
+        </div>
+
+        <div class="snapshots" role="list">
+          <article class="snapshot" role="listitem" aria-labelledby="snap1-title">
+            <div class="snap-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M3 7h18v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" stroke="#0d6efd" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="#6f42c1" stroke-width="1.4" stroke-linecap="round"/></svg>
+            </div>
+            <div class="snap-body">
+              <div id="snap1-title" class="snap-title">Global Manufacturer</div>
+              <div class="snap-sub">Reduced infrastructure costs by <strong>40%</strong> through cloud modernization and DevOps automation.</div>
+            </div>
+          </article>
+
+          <article class="snapshot" role="listitem" aria-labelledby="snap2-title">
+            <div class="snap-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M4 19h16" stroke="#6ea8fe" stroke-width="1.6" stroke-linecap="round"/><path d="M7 14v-6" stroke="#0d6efd" stroke-width="1.6" stroke-linecap="round"/><path d="M12 14v-2" stroke="#6f42c1" stroke-width="1.6" stroke-linecap="round"/><path d="M17 14v-10" stroke="#0d6efd" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <div class="snap-body">
+              <div id="snap2-title" class="snap-title">Financial Services Firm</div>
+              <div class="snap-sub">Enabled real-time analytics across <strong>5M+</strong> customer records using our AI-powered data platform.</div>
+            </div>
+          </article>
+
+          <article class="snapshot" role="listitem" aria-labelledby="snap3-title">
+            <div class="snap-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M6 6h12l-1.2 8.4a2 2 0 0 1-2 1.6H9.2a2 2 0 0 1-2-1.6L6 6z" stroke="#6f42c1" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 6h18" stroke="#0d6efd" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="snap-body">
+              <div id="snap3-title" class="snap-title">Retail Enterprise</div>
+              <div class="snap-sub">Launched a scalable e-commerce portal with headless CMS, increasing conversion by <strong>28%</strong>.</div>
+            </div>
+          </article>
+
+          <!-- Cross-Industry Impact -->
+          <article class="snapshot" role="listitem" aria-labelledby="snap4-title">
+            <div class="snap-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 2v6" stroke="#0d6efd" stroke-width="1.6" stroke-linecap="round"/><path d="M6 10h12" stroke="#6ea8fe" stroke-width="1.4" stroke-linecap="round"/><path d="M4 20h16" stroke="#6f42c1" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </div>
+            <div class="snap-body">
+              <div id="snap4-title" class="snap-title">Cross-Industry Impact</div>
+              <div class="snap-sub">Enterprise-grade solutions across manufacturing, finance, and retail that reduce cost and accelerate time-to-value.</div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+
+      <!-- Right: Testimonials -->
+      <aside class="testimonials" aria-labelledby="testimonials-heading">
+        <div style="display:flex;justify-content:space-between;align-items:center;">
+          <h3 id="testimonials-heading" style="margin:0;font-size:16px;font-weight:800;">What Our Clients Say</h3>
+          <div aria-hidden="true" style="color:var(--muted);font-size:13px;">Trusted • Enterprise</div>
+        </div>
+
+        <!-- testimonial card -->
+        <div class="test-card" id="test-viewport" role="region" aria-live="polite" aria-atomic="true">
+          <blockquote class="quote" id="quote-text">
+            UGEBALL didn’t just deliver a solution — they helped us rethink our entire digital strategy. Their team is sharp, reliable, and truly enterprise-ready.
+          </blockquote>
+          <div class="who" id="quote-who">— CTO, Fortune 500 Client</div>
+        </div>
+
+        <!-- testimonial nav -->
+        <div class="t-nav" role="tablist" aria-label="Testimonials">
+          <button class="t-dot active" aria-label="Testimonial 1" data-index="0" aria-pressed="true"></button>
+          <button class="t-dot" aria-label="Testimonial 2" data-index="1" aria-pressed="false"></button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const testimonials = [
+        { text: "UGEBALL didn’t just deliver a solution — they helped us rethink our entire digital strategy. Their team is sharp, reliable, and truly enterprise-ready.", who: "— CTO, Fortune 500 Client" },
+        { text: "The platform UGEBALL built for us is now the backbone of our operations. Their strategic insight and technical depth are unmatched.", who: "— VP of Technology, Global Retail Brand" }
+      ];
+
+      const quoteText = document.getElementById('quote-text');
+      const quoteWho  = document.getElementById('quote-who');
+      const dots = Array.from(document.querySelectorAll('.t-dot'));
+
+      function setTestimonial(i){
+        i = i % testimonials.length;
+        const t = testimonials[i];
+        quoteText.style.opacity = 0;
+        quoteWho.style.opacity = 0;
+        dots.forEach(d => { d.classList.remove('active'); d.setAttribute('aria-pressed','false'); });
+        dots[i].classList.add('active');
+        dots[i].setAttribute('aria-pressed','true');
+        setTimeout(()=> {
+          quoteText.textContent = t.text;
+          quoteWho.textContent = t.who;
+          quoteText.style.transition = 'opacity .32s';
+          quoteWho.style.transition = 'opacity .32s';
+          quoteText.style.opacity = 1;
+          quoteWho.style.opacity = 1;
+        }, 180);
+      }
+
+      dots.forEach(d => {
+        d.addEventListener('click', ()=> { setTestimonial(parseInt(d.dataset.index,10)); });
+        d.addEventListener('keydown', (e) => {
+          if(e.key === 'Enter' || e.key === ' ') { e.preventDefault(); d.click(); }
+        });
+      });
+
+      let idx = 0;
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(!prefersReduced){
+        setInterval(()=> { idx = (idx + 1) % testimonials.length; setTestimonial(idx); }, 8000);
+      }
+    })();
+  </script>
+</body>
+</html>
+<section class="partner-clean">
+  <div class="partner-content">
+    <h2 class="gradient-heading">Partner With UGEBALL — Where Enterprise Vision Meets Execution</h2>
+
+    <p class="lead">High-growth enterprises don’t just need vendors — they need partners who understand scale, complexity, and strategic outcomes. At UGEBALL, we bring together certified expertise, platform engineering, and business intelligence to help you lead in your industry.</p>
+
+    <p class="lead">Whether you're building a new digital ecosystem, transforming legacy infrastructure, or aligning technology with boardroom strategy — we deliver with precision, resilience, and impact.</p>
+
+    <div class="partner-cta">
+      <a href="#" class="btn btn-primary">Book a Strategy Call</a>
+      <a href="#" class="btn btn-secondary">Download Our Enterprise Brief</a>
+      <a href="#" class="btn btn-tertiary">Explore Client Success Stories</a>
+    </div>
+
+    <p class="partner-note">Your next transformation begins with a conversation. Let’s talk.</p>
+  </div>
+</section>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap');
+
+.partner-clean{
+  background:#f5f5f8;
+  font-family:'Nunito', sans-serif;
+  padding:80px 20px;
+  text-align:center;
+}
+
+.partner-content{
+  max-width:800px;
+  margin:0 auto;
+}
+
+.gradient-heading{
+  font-size:32px;
+  font-weight:800;
+  margin-bottom:24px;
+  background: linear-gradient(90deg, #0d6efd, #6ea8fe, #6f42c1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.lead{
+  font-size:16px;
+  line-height:1.6;
+  color:#1a1a1a;
+  margin-bottom:16px;
+}
+
+.partner-cta{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:24px 0;
+}
+
+.btn{
+  padding:14px 24px;
+  border-radius:8px;
+  font-weight:700;
+  text-decoration:none;
+  transition:all 0.2s;
+  text-align:center;
+}
+.btn-primary{background:#0d6efd;color:#fff;}
+.btn-primary:hover{opacity:0.92;transform:translateY(-2px);}
+.btn-secondary{background:#fff;border:2px solid #0d6efd;color:#0d6efd;}
+.btn-secondary:hover{background:#0d6efd;color:#fff;transform:translateY(-2px);}
+.btn-tertiary{background:#e3f2ff;color:#0d6efd;}
+.btn-tertiary:hover{opacity:0.92;transform:translateY(-2px);}
+
+.partner-note{
+  font-size:15px;
+  color:#5a5a6c;
+  margin-top:16px;
+}
+</style>
+
+
