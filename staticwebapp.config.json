@@ -1,0 +1,11 @@
+{
+  "routes": [
+    {
+      "route": "/solution",
+      "methods": [
+        "get"
+      ],
+      "rewrite": " /solution.html"
+    }
+  ]
+}
