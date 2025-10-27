@@ -1,11 +1,11 @@
 {
   "routes": [
     {
-      "route": "https://www.ugeball.com/solution",
+      "route": "https://www.ugeball.com/solution.html",
       "methods": [
         "get"
       ],
-      "rewrite": "https://www.ugeball.com/solution.html"
+      "rewrite": "https://www.ugeball.com/solution"
     }
   ]
 }
